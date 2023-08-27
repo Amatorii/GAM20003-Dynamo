@@ -105,7 +105,7 @@ namespace Hamish.player.draft
         {
             movementDirection = orientation.forward * Input.Y + orientation.right * Input.X;
 
-            rb.AddForce(10f * Speed * movementDirection.normalized, ForceMode.Force);
+            rb.AddForce(10.0f * Speed * movementDirection.normalized, ForceMode.Force);
         }
 
         #endregion
