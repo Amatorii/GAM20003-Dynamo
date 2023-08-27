@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//CHganges
-
 namespace Hamish.player.draft
 {
     public abstract class PCDocumentation: MonoBehaviour
