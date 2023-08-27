@@ -758,9 +758,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 308520563}
-  - component: {fileID: 308520564}
   - component: {fileID: 308520565}
   - component: {fileID: 308520566}
+  - component: {fileID: 308520567}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -785,27 +785,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &308520564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308520562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e529b06cbf983d47a584e0f6f5be351, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensitivity: 6.99
-  orientation: {fileID: 0}
-  cameraRig: {fileID: 526073715}
-  grounded: 0
-  feet: {fileID: 413330428}
-  detectionRayLength: 0.5
-  Speed: 10
-  groundDrag: 7
-  text: {fileID: 103969126}
 --- !u!54 &308520565
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -856,6 +835,25 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &308520567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308520562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1959830b881c18e4cbf9b252acad0202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 5.2
+  cameraRig: {fileID: 526073715}
+  detectionRayLength: 0.2
+  feet: {fileID: 413330428}
+  Speed: 7
+  velocityText: {fileID: 103969126}
+  groundDrag: 7
 --- !u!43 &409600118
 Mesh:
   m_ObjectHideFlags: 0
