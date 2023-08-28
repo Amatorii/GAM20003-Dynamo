@@ -851,7 +851,9 @@ MonoBehaviour:
   cameraRig: {fileID: 526073715}
   detectionRayLength: 0.2
   feet: {fileID: 413330428}
-  Speed: 7
+  groundedSpeed: 7
+  airSpeed: 7
+  jumpForce: 40
   velocityText: {fileID: 103969126}
   groundDrag: 7
 --- !u!43 &409600118

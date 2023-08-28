@@ -32,13 +32,14 @@ namespace Hamish.player.draft
         {
             Drag();
             ControlCamera();
-            RunCollisionChecks();
             GatherInput();
+            RunCollisionChecks();
+            MovePlayer();
         }
 
         private void FixedUpdate()
         {
-            MovePlayer();
+
         }
 
         #region GatherInput
@@ -98,14 +99,28 @@ namespace Hamish.player.draft
 
         #region GroundedMovement
         [Header("Grounded")]
-        [Range(0f, 300f)]
-        [SerializeField] private float Speed;
+        [Range(0f, 50)]
+        [SerializeField] private float groundedSpeed;
+        [Range(0f, 50)]
+        [SerializeField] private float airSpeed;
+        [Range(0f, 50)]
+        [SerializeField] private float jumpForce;
         private Vector3 movementDirection;
         private void MovePlayer()
         {
             movementDirection = orientation.forward * Input.Y + orientation.right * Input.X;
 
-            rb.AddForce(10.0f * Speed * movementDirection.normalized, ForceMode.Force);
+            if (Input.JumpDown & grounded)
+            {
+                rb.AddForce(10.0f * jumpForce * orientation.up.normalized, ForceMode.Force);
+            }
+
+            if (grounded)
+            {
+                rb.AddForce(10.0f * groundedSpeed * movementDirection.normalized, ForceMode.Force);
+            }
+            else
+                rb.AddForce(airSpeed * movementDirection.normalized, ForceMode.Force);
         }
 
         #endregion
