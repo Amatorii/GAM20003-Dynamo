@@ -34,12 +34,19 @@ namespace Hamish.player.draft
             ControlCamera();
             GatherInput();
             RunCollisionChecks();
-            MovePlayer();
+            if (Input.JumpDown & grounded)
+            {
+                Jump();
+            }
+            movementDirection = orientation.forward * Input.Y + orientation.right * Input.X;
         }
 
         private void FixedUpdate()
         {
-
+            if (Input.Shift)
+                MovePlayer(sprintSpeed * 10);
+            else
+                MovePlayer(groundedSpeed * 10);
         }
 
         #region GatherInput
@@ -49,6 +56,7 @@ namespace Hamish.player.draft
             {
                 JumpDown = UnityEngine.Input.GetButtonDown("Jump"),
                 JumpUp = UnityEngine.Input.GetButtonUp("Jump"),
+                Shift = UnityEngine.Input.GetKey("left shift"),
                 X = UnityEngine.Input.GetAxisRaw("Horizontal"),
                 Y = UnityEngine.Input.GetAxisRaw("Vertical"),
                 mouseX = UnityEngine.Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensitivity * 40f,
@@ -104,23 +112,28 @@ namespace Hamish.player.draft
         [Range(0f, 50)]
         [SerializeField] private float airSpeed;
         [Range(0f, 50)]
+        [SerializeField] private float sprintSpeed;
+        [Range(0f, 50)]
         [SerializeField] private float jumpForce;
+        [Range(0f, 50)]
+        [SerializeField] private float downForce;
         private Vector3 movementDirection;
-        private void MovePlayer()
+        private void MovePlayer(float speed)
         {
-            movementDirection = orientation.forward * Input.Y + orientation.right * Input.X;
-
-            if (Input.JumpDown & grounded)
-            {
-                rb.AddForce(10.0f * jumpForce * orientation.up.normalized, ForceMode.Force);
-            }
 
             if (grounded)
             {
-                rb.AddForce(10.0f * groundedSpeed * movementDirection.normalized, ForceMode.Force);
+                rb.AddForce(speed * movementDirection.normalized, ForceMode.Force);
             }
             else
+            {
                 rb.AddForce(airSpeed * movementDirection.normalized, ForceMode.Force);
+            }
+        }
+
+        private void Jump()
+        {
+                rb.AddForce(10 * jumpForce * orientation.up.normalized, ForceMode.Force);
         }
 
         #endregion
@@ -130,7 +143,14 @@ namespace Hamish.player.draft
         ///Currently not really used but there is potential
         ///If you want things like clamped fall speed, apex jump modifiers, cyote time, here is where I would put them
         public TextMeshProUGUI velocityText;
+        /// <summary>
+        /// Decrease this to make the ground more slipery 
+        /// </summary>
         [SerializeField] private float groundDrag;
+        /// <summary>
+        /// Decrrease this to make air movement slower
+        /// </summary>
+        [SerializeField] private float airDrag;
         private void Drag()
         {
             if (!grounded)
@@ -138,6 +158,7 @@ namespace Hamish.player.draft
             else
                 rb.drag = groundDrag;
             velocityText.text = rb.velocity.ToString(); //Calculates player velocity 
+            velocityText.text += grounded.ToString(); //Calculates player velocity 
         }
 
         #endregion

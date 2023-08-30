@@ -25,6 +25,8 @@ namespace Hamish.player.draft
             /// </summary>
             public bool JumpDown;
             public bool JumpUp;
+
+            public bool Shift;
         }
 
         /// <summary>
