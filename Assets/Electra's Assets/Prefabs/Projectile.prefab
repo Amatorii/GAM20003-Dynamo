@@ -58,7 +58,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 150257956015327998, guid: c9a1249e6723afd42a17078f932a2165, type: 3}
   direction: {x: 0, y: 0, z: 0}
-  speed: 5
+  speed: 9
 --- !u!23 &4616689172547304189
 MeshRenderer:
   m_ObjectHideFlags: 0
