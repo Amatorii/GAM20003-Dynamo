@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4471022258984583979}
   - component: {fileID: 2780136114058223707}
   - component: {fileID: 9043258635408756368}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: projectile_player_fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}

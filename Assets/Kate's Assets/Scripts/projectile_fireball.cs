@@ -52,7 +52,7 @@ public class projectile_fireball : MonoBehaviour
         foreach (Collider hit in hits)
         {
             Vector3 offset = hit.ClosestPoint(contact.point); //relative position of contact
-            float proximity = 1 - (radius / offset.magnitude); //multiplier for distance from explosion
+            float proximity = 1 - (offset.magnitude / radius); //multiplier for distance from explosion
 
             
 
