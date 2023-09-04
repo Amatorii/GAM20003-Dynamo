@@ -142,7 +142,7 @@ namespace Hamish.player.draft
         [Header("Physics Sliders")]
         ///Currently not really used but there is potential
         ///If you want things like clamped fall speed, apex jump modifiers, cyote time, here is where I would put them
-        public TextMeshProUGUI velocityText;
+        //public TextMeshProUGUI velocityText;
         /// <summary>
         /// Decrease this to make the ground more slipery 
         /// </summary>
@@ -157,8 +157,8 @@ namespace Hamish.player.draft
                 rb.drag = 0f;
             else
                 rb.drag = groundDrag;
-            velocityText.text = rb.velocity.ToString(); //Calculates player velocity 
-            velocityText.text += grounded.ToString(); //Calculates player velocity 
+            //velocityText.text = rb.velocity.ToString(); //Calculates player velocity 
+            //velocityText.text += grounded.ToString(); //Calculates player velocity 
         }
 
         #endregion
