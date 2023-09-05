@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class projectile_fireball : MonoBehaviour
 {
+    //H: Remember, variables and methods should ONLY be public if nessisary. if you want them to be visable in the inspector, use [SerializeField].
     [Header("Projectile")] //variables about the fireball
     public float speed;
     public float width;
