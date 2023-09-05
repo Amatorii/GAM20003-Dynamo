@@ -13,6 +13,7 @@ public abstract class Movement
     {
         _pController = pController;
         sensitivity = pController.GetSensitivity();
+        //Debug.Log("[MOVEMENT:" + this + "] state is active");
     }
     public abstract Movement ExecuteMovement();
 

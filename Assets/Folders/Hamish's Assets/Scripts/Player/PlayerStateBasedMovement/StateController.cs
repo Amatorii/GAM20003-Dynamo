@@ -1,3 +1,4 @@
+using Hamish.player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,6 @@ public abstract class StateController : MonoBehaviour
 {
     protected Movement _movement;
     public Movement currentMove { get; private set; }
-
     public void StartState(Movement movement)
     {
         _movement = movement;
@@ -20,8 +20,12 @@ public abstract class StateController : MonoBehaviour
         SetState(nextMove);
     }
 
-    private void SetState(Movement move)
+    protected void SetState(Movement move)
     {
+        if(move == null)
+        {
+            Debug.LogError("WARNING: No movement state found");
+        }
         currentMove = move;
     }
 }

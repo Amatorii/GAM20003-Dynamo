@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.Windows;
 
 namespace Hamish.player
@@ -27,6 +28,7 @@ namespace Hamish.player
             RunStateMachine();
             ManipulateRigidBody();
             MovePlayer();
+            RunCollisionChecks();
         }
 
         #region CameraMovement
@@ -63,6 +65,47 @@ namespace Hamish.player
         {
             rb.AddForce(currentSpeed * movementDirection.normalized, ForceMode.Force);
         }
+
+        public void Jump()
+        {
+            rb.AddForce(15 * jumpForce * transform.up, ForceMode.Force);
+        }
+        #endregion
+
+        #region Collision
+        [Header("Collision")]
+        [SerializeField] private float detectionRayLength;
+        [SerializeField] private GameObject feet;
+        public bool grounded { get; private set; }
+        //public bool grounded;
+        private void RunCollisionChecks()
+        {
+            //Debug.DrawRay(feet.transform.position, transform.TransformDirection(Vector3.down), Color.red, detectionRayLength);
+            if (Physics.Raycast(feet.transform.position, transform.TransformDirection(Vector3.down), out RaycastHit _hit, detectionRayLength))
+                grounded = true;
+            else
+                grounded = false;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            switch (other.tag)
+            {
+                case "Rail":
+                    SetState(new Grinding(this));
+                    break;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            switch (currentMove)
+            {
+                case Grinding:
+                    SetState(new Walking(this));
+                    break;
+            }
+        }
         #endregion
 
         [Header("Variables")]
@@ -71,6 +114,7 @@ namespace Hamish.player
         [Range(0f, 50)][SerializeField] private float groundDrag;
         [Range(0f, 50)][SerializeField] private float airSpeed;
         [Range(0f, 50)][SerializeField] private float airDrag;
+        [Range(0f, 50)][SerializeField] private float jumpForce;
         private float currentSpeed;
 
         private void ManipulateRigidBody()
@@ -84,6 +128,10 @@ namespace Hamish.player
                 case Running:
                     rb.drag = groundDrag;
                     currentSpeed = runningSpeed;
+                    break;
+                case Airborne:
+                    rb.drag = airDrag;
+                    currentSpeed = airSpeed;
                     break;
             }
         }
