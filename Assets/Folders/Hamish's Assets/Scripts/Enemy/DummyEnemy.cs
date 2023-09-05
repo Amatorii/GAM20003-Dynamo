@@ -17,10 +17,5 @@ namespace Hamish.Enemy
         {
             
         }
-
-        public override void TakeDamage(float damage)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
