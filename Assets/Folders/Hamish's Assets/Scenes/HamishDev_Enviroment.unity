@@ -2609,7 +2609,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 419232802}
-  m_VersionIndex: 1759
+  m_VersionIndex: 1768
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2638,13 +2638,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1187592639662712380, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
+      propertyPath: gravity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187592639662712380, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
       propertyPath: cameraRig
       value: 
       objectReference: {fileID: 526073715}
-    - target: {fileID: 1187592639662712380, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
-      propertyPath: groundDrag
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 1187592639662712380, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
       propertyPath: groundSpeed
       value: 7
@@ -2663,7 +2663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4663169144379293933, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.073
+      value: 9.69
       objectReference: {fileID: 0}
     - target: {fileID: 4663169144379293933, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2697,13 +2697,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7593551254566096632, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7593551254566096632, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 8313849556785560646, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
       propertyPath: m_Name
       value: PlayerController
-      objectReference: {fileID: 0}
-    - target: {fileID: 8313849556785560646, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
