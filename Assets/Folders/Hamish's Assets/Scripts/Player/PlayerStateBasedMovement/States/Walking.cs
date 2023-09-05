@@ -34,4 +34,9 @@ public class Walking : Movement
         }
         return this;
     }
+
+    private void GroundPlayer()
+    {
+
+    }
 }

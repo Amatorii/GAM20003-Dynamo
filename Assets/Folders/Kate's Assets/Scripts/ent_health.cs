@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//H: The class name should always be capitalized. i.e. Ent_Health
+//Also is this class meant to be abstract?
 public class ent_health : MonoBehaviour
 {
     public int health; //health points
+                       //H: Do you want other scripts to be able to change an entity's health? Cus usually, only the ent_health script should handle that
 
-    bool Damage(int damage)
+    //H: Make sure you add private or public to methods and variables
+    bool Damage(int damage) 
     {
         health -= damage;
 
@@ -23,8 +27,11 @@ public class ent_health : MonoBehaviour
             return false;
         }
     }
-
-    public void DamageExplosion(Vector3 offset, float proximity, int damage, int damageFloor, float knockback) //handles calculating damage and knockback from explosion
+    //H: This just allows people to see what the method does by mousing over it even when in other scripts
+    /// <summary>
+    /// handles calculating damage and knockback from explosion
+    /// </summary>
+    public void DamageExplosion(Vector3 offset, float proximity, int damage, int damageFloor, float knockback) 
     {
         int damageOut = Mathf.RoundToInt(damageFloor + (damage * proximity));
 
@@ -38,8 +45,10 @@ public class ent_health : MonoBehaviour
             //launch method goes here
         }
     }
-
-    public void DamageShotgun(Vector3 offset, float proximity, int damage, int damageFloor, float knockback) //handles calculating damage and knockback from shotgun
+    /// <summary>
+    /// handles calculating damage and knockback from shotgun
+    /// </summary>
+    public void DamageShotgun(Vector3 offset, float proximity, int damage, int damageFloor, float knockback) 
     {
         int damageOut = Mathf.RoundToInt(damageFloor + (damage * proximity));
 

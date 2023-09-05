@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 2595711048206517030}
   m_Layer: 0
   m_Name: PlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,9 +109,9 @@ MonoBehaviour:
   sensitivity: 10
   cameraRig: {fileID: 0}
   cameraPosition: {fileID: 7061669321191417034}
-  groundSpeed: 0
-  runningSpeed: 0
-  groundDrag: 0
+  groundSpeed: 7
+  runningSpeed: 14
+  groundDrag: 7
   airSpeed: 0
   airDrag: 0
 --- !u!136 &2595711048206517030
