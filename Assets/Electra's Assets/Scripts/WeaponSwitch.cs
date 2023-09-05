@@ -25,30 +25,27 @@ namespace Electra.weapon
                 weaponIndex++;
                 if (weaponIndex == 3)
                     weaponIndex = 0;
-                
-                SwapWeapon(weaponIndex);
+                SwapWeapon(weaponList[weaponIndex]);
             }
             if (Input.mouseScrollDelta.y < 0)
             {
                 weaponIndex--;
                 if (weaponIndex == -1)
                     weaponIndex = 2;
-
-                SwapWeapon(weaponIndex);
+                SwapWeapon(weaponList[weaponIndex]);
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-                SwapWeapon(0);
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-                SwapWeapon(1);
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-                SwapWeapon(2);
+            //if (Input.GetKeyDown(KeyCode.Alpha1))
+            //    SwapWeapon(shotgun);
+            //if (Input.GetKeyDown(KeyCode.Alpha2))
+            //    SwapWeapon(rocketLauncher);
+            //if (Input.GetKeyDown(KeyCode.Alpha3))
+            //    SwapWeapon(thirdGun);
         }
-
-        public void SwapWeapon(int w)
+        public void SwapWeapon(GameObject w)
         {
             activeWeapon.SetActive(false);
-            activeWeapon = weaponList[w];
+            activeWeapon = w;
             activeWeapon.SetActive(true);
         }
     }
