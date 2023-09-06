@@ -24,7 +24,6 @@ public class Grinding : Movement
     {
         CheckInput();
         _pController.ControlCamera(_input.mouseY, _input.mouseX);
-
         return this;
     }
 }

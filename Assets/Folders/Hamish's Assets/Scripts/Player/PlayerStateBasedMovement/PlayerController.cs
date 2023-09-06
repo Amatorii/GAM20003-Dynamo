@@ -28,7 +28,7 @@ namespace Hamish.player
             RunStateMachine();
             ManipulateRigidBody();
             MovePlayer();
-            RunCollisionChecks();
+            Debug.Log(grounded);
         }
 
         #region CameraMovement
@@ -74,17 +74,27 @@ namespace Hamish.player
 
         #region Collision
         [Header("Collision")]
-        [SerializeField] private float detectionRayLength;
         [SerializeField] private GameObject feet;
         public bool grounded { get; private set; }
         //public bool grounded;
-        private void RunCollisionChecks()
+        public void RunCollisionChecks(float detectionRayLength)
         {
             //Debug.DrawRay(feet.transform.position, transform.TransformDirection(Vector3.down), Color.red, detectionRayLength);
             if (Physics.Raycast(feet.transform.position, transform.TransformDirection(Vector3.down), out RaycastHit _hit, detectionRayLength))
+            {
                 grounded = true;
+            }
             else
                 grounded = false;
+        }
+
+        public void SnapPlayerToGround(float detectionRayLength)
+        {
+            Physics.Raycast(feet.transform.position, transform.TransformDirection(Vector3.down), out RaycastHit _hit, detectionRayLength);
+            if (_hit.point != transform.position)
+            {
+                transform.position = _hit.point;
+            }
         }
 
         private void OnTriggerEnter(Collider other)

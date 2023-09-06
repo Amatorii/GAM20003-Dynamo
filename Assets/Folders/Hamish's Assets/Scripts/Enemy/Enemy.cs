@@ -10,9 +10,9 @@ namespace Hamish.Enemy
 {
     public abstract class Enemy : MonoBehaviour
     {
-        private Rigidbody rb;
-        private CapsuleCollider hitBox;
-        private NavMeshAgent _agent;
+        protected Rigidbody rb;
+        protected CapsuleCollider hitBox;
+        protected NavMeshAgent _agent;
 
 
         public virtual void Init()
@@ -30,6 +30,7 @@ namespace Hamish.Enemy
             if (_canSeePlayer)
             {
                 _agent.SetDestination(playerObject.transform.position);
+                Debug.Log("["+this+"]: Sees the player");
             }
         }
 
@@ -52,6 +53,7 @@ namespace Hamish.Enemy
             {
                 yield return wait;
                 FieldOfViewCheck();
+                Debug.Log("Enumerator Active");
             }
         }
 

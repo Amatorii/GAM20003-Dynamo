@@ -28,18 +28,21 @@ public class Running : Movement
         CheckInput();
         _pController.SetMovementDirection(_input.X, _input.Y);
         _pController.ControlCamera(_input.mouseY, _input.mouseX);
-        if (!_pController.grounded)
-        {
-            return new Airborne(_pController);
-        }
         if (_input.JumpDown)
         {
             _pController.Jump();
+            return new Airborne(_pController);
+        }
+        if (!_pController.grounded)
+        {
+            return new Airborne(_pController);
         }
         if (!_input.Shift)
         {
             return new Walking(_pController);
         }
+        _pController.RunCollisionChecks(0.3f);
+        _pController.SnapPlayerToGround(0.3f);
         return this;
     }
 }

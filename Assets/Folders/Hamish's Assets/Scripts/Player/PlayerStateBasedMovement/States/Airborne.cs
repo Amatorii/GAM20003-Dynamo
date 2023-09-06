@@ -25,7 +25,8 @@ public class Airborne : Movement
         CheckInput();
         _pController.SetMovementDirection(_input.X, _input.Y);
         _pController.ControlCamera(_input.mouseY, _input.mouseX);
-        if(_pController.grounded)
+        _pController.RunCollisionChecks(0.2f);
+        if (_pController.grounded)
         {
             return new Walking(_pController);
         }
