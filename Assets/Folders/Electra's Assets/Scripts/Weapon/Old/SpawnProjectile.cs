@@ -13,7 +13,7 @@ public class SpawnProjectile : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject bullet =  GameObject.Instantiate(projectile, transform.position + transform.forward, transform.rotation);
-            bullet.GetComponent<Projectile>().direction = transform.forward;
+            //bullet.GetComponent<Projectile>().direction = transform.forward;
         }
         if (Input.GetMouseButtonDown(1))
         {
