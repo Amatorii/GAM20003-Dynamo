@@ -19,16 +19,16 @@ public class shotgun : MonoBehaviour
     public string[] damageLayers; //filtering for enemies
     int damageLayermask; //converting to layermask
 
+    Transform transform;
+
     void Awake()
     {
         //layermask conversion
         surfaceLayermask = LayerMask.GetMask(surfaceLayers);
         damageLayermask = LayerMask.GetMask(damageLayers);
-
-        ShotgunShoot(); //debug only. delete once firing script is complete
     }
 
-    void ShotgunShoot()
+    public void fire()
     {
         //seeing how far before shotgun hits a wall
         RaycastHit rHit;

@@ -51,7 +51,7 @@ public class projectile_fireball : MonoBehaviour
         Collider[] hits = Physics.OverlapSphere(contact.point, radius, explosionLayermask); //actual explosion
         foreach (Collider hit in hits)
         {
-            Vector3 offset = hit.ClosestPoint(contact.point); //relative position of contact
+            Vector3 offset = hit.ClosestPoint(contact.point) - contact.point; //relative position of contact
             float proximity = 1 - (offset.magnitude / radius); //multiplier for distance from explosion
 
             
