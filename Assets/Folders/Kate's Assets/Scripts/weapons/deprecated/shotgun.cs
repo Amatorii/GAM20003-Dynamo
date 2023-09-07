@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//H: Remember what I said. Specifically for the weapons, I highly recommend you make an abstract base weapon class and have all weapons inherit that base.
 public class shotgun : MonoBehaviour
 {
     [Header("Bounds")]
@@ -20,16 +19,16 @@ public class shotgun : MonoBehaviour
     public string[] damageLayers; //filtering for enemies
     int damageLayermask; //converting to layermask
 
+    Transform transform;
+
     void Awake()
     {
         //layermask conversion
         surfaceLayermask = LayerMask.GetMask(surfaceLayers);
         damageLayermask = LayerMask.GetMask(damageLayers);
-
-        ShotgunShoot(); //debug only. delete once firing script is complete
     }
 
-    void ShotgunShoot()
+    public void fire()
     {
         //seeing how far before shotgun hits a wall
         RaycastHit rHit;

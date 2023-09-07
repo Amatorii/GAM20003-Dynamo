@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class projectile_fireball : MonoBehaviour
 {
-    //H: Remember, variables and methods should ONLY be public if nessisary. if you want them to be visable in the inspector, use [SerializeField].
     [Header("Projectile")] //variables about the fireball
     public float speed;
     public float width;
@@ -52,7 +51,7 @@ public class projectile_fireball : MonoBehaviour
         Collider[] hits = Physics.OverlapSphere(contact.point, radius, explosionLayermask); //actual explosion
         foreach (Collider hit in hits)
         {
-            Vector3 offset = hit.ClosestPoint(contact.point); //relative position of contact
+            Vector3 offset = hit.ClosestPoint(contact.point) - contact.point; //relative position of contact
             float proximity = 1 - (offset.magnitude / radius); //multiplier for distance from explosion
 
             

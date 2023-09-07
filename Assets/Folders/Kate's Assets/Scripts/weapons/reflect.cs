@@ -33,7 +33,6 @@ public class reflect : MonoBehaviour
                 if (offset.magnitude <= range) //filtering out projectiles that are out of range
                 {
                     Debug.Log("[" + name + "] Reflect: Found projectile" + hit.name + "at relative position " + offset + ". Reflecting in direction " + transform.forward + " at position " + origin.position + " and destroying original.");
-                    //H: It might be better to just flip the projectile around because creating a new instance for each projectile could lag the game a lot
 
                     Instantiate(reflectPrefab, origin.position, origin.rotation); //creating reflected projectile
                     Destroy(hit); //destroying original projectile
