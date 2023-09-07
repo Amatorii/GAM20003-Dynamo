@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireball: {fileID: 4299516142843906018, guid: f599d8842f8869c49a6caa7507821faf, type: 3}
+  activeWeapon: 
 --- !u!1 &7574733409927538120
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +201,7 @@ MonoBehaviour:
   stateName: 
   velocity: {x: 0, y: 0, z: 0}
   magnitude: 0
+  dummy: 0
 --- !u!114 &2551082781891519951
 MonoBehaviour:
   m_ObjectHideFlags: 0

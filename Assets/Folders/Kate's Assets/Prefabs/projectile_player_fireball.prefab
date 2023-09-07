@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bcf37718aece840b197901acf1d723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  speed: 20
   width: 0.0625
   contactLayers:
   - World
@@ -52,10 +52,10 @@ MonoBehaviour:
   radius: 5
   enemyDamage: 75
   enemyDamageFloor: 25
-  enemyKnockback: 15
+  enemyKnockback: 20
   playerDamage: 0
   playerDamageFloor: 0
   playerKnockback: 15
   explosionLayers:
-  - Enemy
   - Player
+  - Enemy
