@@ -14,8 +14,7 @@ namespace Hamish.Enemy
         protected CapsuleCollider hitBox;
         protected NavMeshAgent _agent;
 
-
-        public virtual void Init()
+        protected virtual void Awake()
         {
             rb = GetComponent<Rigidbody>();
             hitBox = GetComponent<CapsuleCollider>();
@@ -23,21 +22,13 @@ namespace Hamish.Enemy
             playerObject = GameObject.FindGameObjectWithTag("Player");
 
             StartCoroutine(FOVRoutine());
-        }
-
-        private void Update()
-        {
-            if (_canSeePlayer)
-            {
-                _agent.SetDestination(playerObject.transform.position);
-                Debug.Log("["+this+"]: Sees the player");
-            }
+            Debug.Log("[" + this + "]: Sucessfully Initialized");
         }
 
         [Header("Vision Cone")]
         public float _radius;
         public float _angle;
-        private float _delay;
+        private float _delay = 1.0f;
         public bool _canSeePlayer;
 
         public GameObject playerObject;
@@ -45,15 +36,15 @@ namespace Hamish.Enemy
         public LayerMask targetMask;
         public LayerMask obstructionMask;
 
-        private IEnumerator FOVRoutine()
+        protected Vector3 directToTarget;
+
+        protected IEnumerator FOVRoutine()
         {
             WaitForSeconds wait = new WaitForSeconds(_delay);
-
             while (true)
             {
                 yield return wait;
                 FieldOfViewCheck();
-                Debug.Log("Enumerator Active");
             }
         }
 
@@ -64,7 +55,7 @@ namespace Hamish.Enemy
             if (rangeChecks.Length != 0)
             {
                 Transform target = rangeChecks[0].transform;
-                Vector3 directToTarget = (target.position - transform.position).normalized;
+                directToTarget = (target.position - transform.position).normalized;
                 if (Vector3.Angle(transform.forward, directToTarget) < _angle / 2)
                 {
                     float distToTarget = Vector3.Distance(transform.position, target.position);
