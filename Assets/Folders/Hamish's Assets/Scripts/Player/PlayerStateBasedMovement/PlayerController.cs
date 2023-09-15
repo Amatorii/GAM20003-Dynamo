@@ -28,7 +28,7 @@ namespace Hamish.player
             RunStateMachine();
             ManipulateRigidBody();
             MovePlayer();
-            Debug.Log(grounded);
+            //Debug.Log(grounded);
         }
 
         #region CameraMovement
