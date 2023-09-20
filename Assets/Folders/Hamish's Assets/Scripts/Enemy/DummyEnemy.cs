@@ -22,8 +22,10 @@ namespace Hamish.Enemy
             {
 
                 AimGun();
-                if(Vector3.Distance(playerObject.transform.position, transform.position) > 10.0f)
-                    //_agent.SetDestination(playerObject.transform.position);
+                if (Vector3.Distance(playerObject.transform.position, transform.position) > 5.0f)
+                    _agent.SetDestination(playerObject.transform.position);
+                else
+                    _agent.SetDestination(transform.position);
 
                 Debug.Log("[" + this + "]: Sees the player");
             }
@@ -43,7 +45,7 @@ namespace Hamish.Enemy
             if (currentlyShooting && _isAimed)
             {
                 currentlyShooting = false;
-                //StartCoroutine(ShootGun(4));
+                StartCoroutine(ShootGun(4));
             }
             if (lookAtPlayer != null)
                 StopCoroutine(lookAtPlayer);
