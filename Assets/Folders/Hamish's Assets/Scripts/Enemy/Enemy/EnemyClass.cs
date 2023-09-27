@@ -10,28 +10,34 @@ namespace Hamish.Enemy
         protected Rigidbody rb;
         protected CapsuleCollider hitBox;
         protected NavMeshAgent _agent;
-        public GameObject playerObject;
+        [SerializeField]private GameObject playerObject;
 
-        private bool debugActive = true;
+        //protected GameObject enemyModel;
+        protected Animator enemyAnimation;
+
+        private bool debugActive = false;
+
+        private bool IsWalking = false;
 
         protected virtual void Awake()
         {
             rb = GetComponent<Rigidbody>();
-            EchoDebug("[" + this + "]: RigidBody = " + rb);
+            EchoDebug("RigidBody = " + rb);
             hitBox = GetComponent<CapsuleCollider>();
-            EchoDebug("[" + this + "]: Hitbox = " + hitBox);
+            EchoDebug("Hitbox = " + hitBox);
             _agent = GetComponent<NavMeshAgent>();
-            EchoDebug("[" + this + "]: NavMesh = " + _agent);
+            EchoDebug("NavMesh = " + _agent);
             playerObject = GameObject.FindGameObjectWithTag("Player");
+
+            //enemyModel = GetComponentInChildren<GameObject>();
+            enemyAnimation = GetComponentInChildren<Animator>();
         }
-
-
 
         private void EchoDebug(object msg)
         {
             if (debugActive)
             {
-                Debug.Log(msg);
+                Debug.Log("["+this+"]"+msg);
             }
         }
     }
