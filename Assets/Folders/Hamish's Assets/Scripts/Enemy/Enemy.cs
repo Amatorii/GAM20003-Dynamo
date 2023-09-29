@@ -28,14 +28,14 @@ namespace Hamish.Enemy
         [Header("Vision Cone")]
         public float _radius;
         public float _angle;
-        private float _delay = 1.0f;
+        public float _delay = 1.0f;
         public bool _canSeePlayer;
+        public bool isAttacking = false;
 
         public GameObject playerObject;
 
         public LayerMask targetMask;
         public LayerMask obstructionMask;
-
         protected Vector3 directToTarget;
 
         protected IEnumerator FOVRoutine()
@@ -47,6 +47,13 @@ namespace Hamish.Enemy
                 FieldOfViewCheck();
             }
         }
+
+        public void MoveToPlayer()
+        {
+            _agent.SetDestination(playerObject.transform.position);
+        }
+
+        public abstract EnemyState AttackPlayer();
 
         private void FieldOfViewCheck() //FOV for finding Player
         {

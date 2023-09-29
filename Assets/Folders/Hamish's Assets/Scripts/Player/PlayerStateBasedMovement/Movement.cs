@@ -41,12 +41,6 @@ public abstract class Movement
 
         public bool Shift;
     }
-
-    void Update()
-    {
-        Debug.Log("HI");
-    }
-
     ///TODO:
     /// - Make Controls, assignable (Currently, they're the default unity controls)
 }

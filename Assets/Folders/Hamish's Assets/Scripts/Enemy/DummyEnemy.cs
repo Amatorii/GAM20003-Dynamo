@@ -97,5 +97,10 @@ namespace Hamish.Enemy
             yield return new WaitForSeconds(1.0f);
             currentlyShooting = true;
         }
+
+        public override EnemyState AttackPlayer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
