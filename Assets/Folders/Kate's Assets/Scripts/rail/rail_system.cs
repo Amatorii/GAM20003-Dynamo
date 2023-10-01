@@ -16,7 +16,7 @@ public class rail_system : MonoBehaviour
     private float[] segmentLengths; // holds the lengths of each rail segment
 
     // rail data
-    private float totalLength; // combined length of all segments
+    public float totalLength; // combined length of all segments
 
 #endregion
 
@@ -36,7 +36,7 @@ public class rail_system : MonoBehaviour
             rail_segment segment = child.GetComponent<rail_segment>();
             child.name = "Segment " + i;
 
-            segment.NewSegment(pointsIn[i], pointsIn[i + 1], radius);
+            segment.NewSegment(pointsIn[i], pointsIn[i + 1], radius, i);
             
             segmentList[i] = segment;
             segmentLengths[i] = segment.length;
@@ -90,6 +90,23 @@ public class rail_system : MonoBehaviour
         Debug.Log("[" + name + "] Project on rail: linear position on segment " + n + " is " + pos + ".");
 
         return segmentList[n].ProjectOnSegment(pos);
+    }
+
+    public float GetLinearPosition (float posIn, int index) // used by player movement to find the overall position of the player on the rail
+    {
+        if (index == 0)
+            return posIn;
+        else
+        {
+            float count = 0; // adding up distances
+
+            for (int i = 0; i < index; i++)
+            { count += segmentLengths[i]; }
+
+            Debug.Log("[" + name + "] Get linear position: local position on segment " + index + " converts to " + count + ".");
+
+            return count + posIn;
+        }
     }
 
 #endregion

@@ -42,9 +42,27 @@ public class move_air : player_move
 
         else
             return null;
+
+
     }
 
 #region functions
 
-    #endregion
+    player_move ToRail (rail_segment railIn) // for doing rail transitions - collects information to send to rail movement state in constructor
+    {
+        rail_system rail = railIn.transform.parent.gameObject.GetComponent<rail_system>(); // finding rail system
+
+        float railPos = railIn.GetRailPosition(body.transform.position + (Vector3.down * body.height / 2)); // local rail position
+        railPos = rail.GetLinearPosition(railPos, railIn.index); // converting to linear position
+
+        Vector3 velocity = body.velocity;
+        float speed = velocity.magnitude; // linear speed
+
+        if (Vector3.Dot(railIn.transform.forward, velocity.normalized) > 0)
+            speed *= -1; // changing direction if they are going backwards
+
+        return new move_rail(body, rail, railPos, speed);
+    }
+
+#endregion
 }

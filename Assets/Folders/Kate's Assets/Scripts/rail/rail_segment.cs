@@ -12,6 +12,7 @@ public class rail_segment : MonoBehaviour
     [SerializeField]
     public float length; // length of rail
     float radius; // radius of volume
+    public int index; // order in system
 
     public CapsuleCollider volume;
 
@@ -19,7 +20,7 @@ public class rail_segment : MonoBehaviour
 
 #region initialisation
 
-    public void NewSegment (Transform a, Transform b, float radIn) // create new segment from a start and end point - also calls createvolume
+    public void NewSegment (Transform a, Transform b, float radIn, int indexIn) // create new segment from a start and end point - also calls createvolume
     {
         //set values
         pointA = a.position;
@@ -27,13 +28,14 @@ public class rail_segment : MonoBehaviour
 
         length = (pointB - pointA).magnitude;
         radius = radIn;
+        index = indexIn;
 
         transform.position = a.position;
         transform.LookAt(b);
 
         CreateVolume();
 
-        Debug.Log("[" + name + "] Rail Segment: Created new segment from point " + pointA + " to " + pointB + " with length " + length + ".");
+        Debug.Log("[" + name + "] Rail Segment: Created new segment (index " + index + ") from point " + pointA + " to " + pointB + " with length " + length + ".");
     }
 
     void CreateVolume() // sets up the trigger for this rail segment
@@ -50,11 +52,6 @@ public class rail_segment : MonoBehaviour
 
 #endregion
 
-    public void StartGrind() // does stuff for starting a grind - finding position for snapping, choosing direction etc.
-    {
-
-    }
-
 #region conversions
 
     public Vector3 ProjectOnSegment(float posIn) // takes a distance input and puts it on the segment in 3D space
@@ -68,5 +65,5 @@ public class rail_segment : MonoBehaviour
 
 #endregion
 
-    void Update() { Debug.DrawRay(pointA, pointB - pointA, Color.yellow); }
+    void Update() { Debug.DrawRay(pointA, pointB - pointA, Color.yellow); } // purely for debug - should be commented out before release maybe
 }
