@@ -7,11 +7,15 @@ public class move_air : player_move
     int world;
     // the layermask for the world
 
+    int railMask;
+    // the layermask for rails
+
     public move_air(CharacterController bodyIn) // constructor - missing a bit from original, might cause problems down the line
     {
         name = "air";
         body = bodyIn;
         world = LayerMask.GetMask("World");
+        railMask = LayerMask.GetMask("Rail");
     }
 
     public move_air(CharacterController bodyIn, Vector3 launch) // secondary constructor for when a force needs to be applied
@@ -41,9 +45,16 @@ public class move_air : player_move
             return new move_ground(body);
 
         else
-            return null;
-
-
+        {
+            Collider[] railIn = Physics.OverlapSphere((Vector3.down * body.height / 2) + (Vector3.up * body.radius), body.radius, railMask);
+            if (railIn.Length != 0)
+            {
+                Debug.Log("[" + name + "] Check State: made contact with a rail.");
+                return ToRail(railIn[1].gameObject.GetComponent<rail_segment>());
+            }
+            else
+                return null;
+        }
     }
 
 #region functions

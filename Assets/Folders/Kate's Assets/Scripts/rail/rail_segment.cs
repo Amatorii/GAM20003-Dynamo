@@ -63,6 +63,9 @@ public class rail_segment : MonoBehaviour
         return Vector3.Project(localPos, transform.forward).magnitude;
     }
 
+    public Vector3 GetRailDirection() //finds direction of rail
+    { return (pointB - pointA).normalized; }
+
 #endregion
 
     void Update() { Debug.DrawRay(pointA, pointB - pointA, Color.yellow); } // purely for debug - should be commented out before release maybe

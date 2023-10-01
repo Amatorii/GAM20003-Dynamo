@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6547648214417258707}
   - component: {fileID: 3493460046610206844}
   - component: {fileID: 289390655625431482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: rail_segment_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -69,4 +69,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: 0
+  index: 0
   volume: {fileID: 3493460046610206844}

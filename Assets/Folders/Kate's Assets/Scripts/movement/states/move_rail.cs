@@ -33,7 +33,33 @@ public class move_rail : player_move
 
     public override player_move CheckState() // used to see if the player should enter a new movement state
     {
-        return null;
+        if (moveInput.inputJump)
+        {
+            Vector3 velOut = (rail.GetDirection(position) * velocity) + (Vector3.up * 7.5f);
+            if (velOut[1] < 7.5) velOut[1] = 7.5f;
+            // adding force to current velocity with vertical magnitude becoming at least 7.5
+
+            rail.StartCoroutine("Skip");
+
+            return new move_air(body, velOut);
+        }
+        // jump
+
+        /*
+        else if ((velocity >= 0 && position >= rail.totalLength) || (velocity < 0 position <= 0))
+        {
+            Vector3 velOut = (rail.GetDirection(position) * velocity);
+            // adding force to current velocity with vertical magnitude becoming at least 7.5
+
+            rail.StartCoroutine("Skip");
+
+            return new move_air(body, velOut);
+        }
+        // end of rail
+        */
+
+        else
+            return null;
     }
 
     #region functions

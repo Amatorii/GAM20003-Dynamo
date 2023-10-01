@@ -109,5 +109,19 @@ public class rail_system : MonoBehaviour
         }
     }
 
+    public Vector3 GetDirection (float posIn) // gets normalised direction of movement
+    { return segmentList[FindSegment(posIn)].GetRailDirection(); }
+
+    public IEnumerator Skip() // disables contact for a period of time. used for exiting rail grinds
+    {
+        foreach(rail_segment i in segmentList)
+        { i.gameObject.SetActive(false); }
+
+        yield return new WaitForSeconds(0.5f);
+
+        foreach (rail_segment i in segmentList)
+        { i.gameObject.SetActive(true); }
+    }
+
 #endregion
 }
