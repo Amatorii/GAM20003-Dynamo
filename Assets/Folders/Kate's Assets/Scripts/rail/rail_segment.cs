@@ -19,7 +19,7 @@ public class rail_segment : MonoBehaviour
 
 #region initialisation
 
-    public rail_segment (Transform a, Transform b, float radIn) // create new segment from a start and end point - also calls createvolume
+    public void NewSegment (Transform a, Transform b, float radIn) // create new segment from a start and end point - also calls createvolume
     {
         //set values
         pointA = a.position;
@@ -45,7 +45,7 @@ public class rail_segment : MonoBehaviour
         volume.direction = 2; //points forward
         volume.height = length + (radius * 2);
 
-        volume.center = transform.forward * (length / 2);
+        volume.center = Vector3.forward * (length / 2);
     }
 
 #endregion
@@ -67,4 +67,6 @@ public class rail_segment : MonoBehaviour
     }
 
 #endregion
+
+    void Update() { Debug.DrawRay(pointA, pointB - pointA, Color.yellow); }
 }

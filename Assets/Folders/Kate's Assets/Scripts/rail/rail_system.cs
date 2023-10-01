@@ -34,15 +34,24 @@ public class rail_system : MonoBehaviour
         {
             GameObject child = GameObject.Instantiate(segmentPrefab, transform);
             rail_segment segment = child.GetComponent<rail_segment>();
+            child.name = "Segment " + i;
 
-            segment = new rail_segment(pointsIn[i], pointsIn[i + 1], radius);
+            segment.NewSegment(pointsIn[i], pointsIn[i + 1], radius);
             
             segmentList[i] = segment;
-            segmentLengths[1] = segment.length;
+            segmentLengths[i] = segment.length;
             totalLength += segment.length;
         }
 
+        foreach (Transform t in pointsIn) // getting rid of the setup points for clarity
+        { Destroy(t.gameObject); }
+
         Debug.Log("[" + name + "] Rail System: Finished creating new system with total length " + totalLength + ".");
+    }
+
+    void Awake()
+    {
+        CreateRail();
     }
 
 #endregion
