@@ -40,22 +40,44 @@ namespace Hamish.Enemy
             Debug.Log(currentState);
         }
         #endregion
-
+        
         public override EnemyState AttackPlayer()
         {
-            EnemyState nextState = null;
-            if (!isAttacking)
+            RaycastHit _hit;
+            bool _isAimed = false;
+
+            Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _hit, Mathf.Infinity);
+            
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red, Mathf.Infinity);
+
+            if (_hit.collider != null)
+                _isAimed = _hit.collider.CompareTag("Player");
+
+            if (currentlyShooting && _isAimed)
             {
-                StartCoroutine(ShootAtPlayer(result => { nextState = new EnemyChase(this); }));
-                if (nextState != null)
-                {
-                    Debug.Log("Successfully Returned");
-                    return nextState;
-                }
+                StartCoroutine(ShootGun(3));
+                currentlyShooting = false;
             }
-            return currentState;
+            if(!_isAimed)
+                return new EnemyChase(this);
+            return new EnemyAttack(this);
         }
 
+        [SerializeField] private GameObject bullet;
+        [SerializeField] private Transform nozzle;
+        [SerializeField] private float rpm;
+        private IEnumerator ShootGun(int _noBullets)
+        {
+            while (0 != _noBullets)
+            {
+                GameObject _bullet = GameObject.Instantiate(bullet, nozzle.position + nozzle.forward, transform.rotation);
+                yield return new WaitForSeconds(60 / rpm);
+                _noBullets--;
+            }
+            yield return new WaitForSeconds(1.0f);
+            currentlyShooting = true;
+        }
+        /*
         private IEnumerator ShootAtPlayer(Action<int> callback)
         {
             isAttacking = true;
@@ -65,5 +87,6 @@ namespace Hamish.Enemy
             isAttacking = false;
             yield return null;
         }
+        */
     }
 }

@@ -13,14 +13,7 @@ namespace Hamish.Enemy
         public override EnemyState RunState()
         {
             EnemyState stateToReturn = enemyClass.AttackPlayer();
-            if (!enemyClass.isAttacking)
-            {
-                return stateToReturn;
-            }
-            else
-            {
-                return null;
-            }
+            return stateToReturn;
         }
     }
 }

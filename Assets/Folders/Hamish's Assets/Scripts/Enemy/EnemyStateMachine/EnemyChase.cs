@@ -15,7 +15,7 @@ namespace Hamish.Enemy
             if (!enemyClass._canSeePlayer)
                 return new EnemyIdle(enemyClass);
 
-            if (enemyClass is ent_rangedEnemy && Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position) > 5.0f)
+            if (enemyClass is ent_rangedEnemy && Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position) < 5.0f)
                 return new EnemyAttack(enemyClass);
 
             enemyClass.MoveToPlayer();
