@@ -46,7 +46,7 @@ public class move_air : player_move
 
         else
         {
-            Collider[] railIn = Physics.OverlapSphere((Vector3.down * body.height / 2) + (Vector3.up * body.radius), body.radius, railMask);
+            Collider[] railIn = Physics.OverlapSphere(body.transform.position + (Vector3.down * body.height / 2) + (Vector3.up * body.radius), body.radius, railMask);
             if (railIn.Length != 0)
             {
                 Debug.Log("[" + name + "] Check State: made contact with a rail.");

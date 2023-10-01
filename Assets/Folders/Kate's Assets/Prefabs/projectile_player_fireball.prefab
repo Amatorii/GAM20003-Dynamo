@@ -51,7 +51,7 @@ MonoBehaviour:
   contactLayers:
   - World
   - Enemy
-  radius: 5
+  radius: 10
   enemyDamage: 75
   enemyDamageFloor: 25
   enemyKnockback: 20
