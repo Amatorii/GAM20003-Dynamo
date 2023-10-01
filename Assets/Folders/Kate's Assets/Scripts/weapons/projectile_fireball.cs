@@ -13,6 +13,7 @@ public class projectile_fireball : MonoBehaviour
 
     [Header("Explosion")] //variables about the explosion/damage
     public float radius;
+    public GameObject explosionEffect;
 
     //to be applied if enemy is hit
     public int enemyDamage; //scaling damage
@@ -72,6 +73,7 @@ public class projectile_fireball : MonoBehaviour
         }
 
         Debug.Log("[" + name + "] Fireball: Explosion complete. Destroying");
+        Instantiate(explosionEffect, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }
