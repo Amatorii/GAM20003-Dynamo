@@ -13,7 +13,12 @@ namespace Hamish.Enemy
         public override EnemyState RunState()
         {
             if (enemyClass._canSeePlayer)
+            {
+                if (enemyClass is ent_rangedEnemy && Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position) < 5.0f)
+                    return new EnemyAttack(enemyClass);
+
                 return new EnemyChase(enemyClass);
+            }
             return this;
         }
     }
