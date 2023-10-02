@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Folders/Electra's Assets/Main Menu.unity
+    guid: 1f67e3d0d24cc7a4495f70781bb5a612
+  - enabled: 0
+    path: Assets/Folders/Kate's Assets/Levels/playtest_1.unity
+    guid: 62bfde374dd390c4ea78e5020ce3e29e
+  - enabled: 1
+    path: Assets/Folders/Electra's Assets/playtest_1_copy.unity
+    guid: a443544b102867c45b7884ed9ffd73b8
   m_configObjects: {}

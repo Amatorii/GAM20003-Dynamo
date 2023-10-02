@@ -5,6 +5,7 @@ using UnityEngine;
 public class weapon_master : MonoBehaviour
 {
     public GameObject fireball;
+    public GameObject hitDecal;
 
     [SerializeField] private string activeWeapon;
     // debug
@@ -17,7 +18,7 @@ public class weapon_master : MonoBehaviour
 
     void Awake()
     {
-        wpnShotgun = new wpn_shotgun(transform);
+        wpnShotgun = new wpn_shotgun(transform, hitDecal);
         wpnFireball = new wpn_fireball(transform, fireball);
 
         wpnActive = wpnFireball;

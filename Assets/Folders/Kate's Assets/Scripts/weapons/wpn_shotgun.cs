@@ -5,15 +5,18 @@ using UnityEngine;
 public class wpn_shotgun : weapon_state
 {
     Transform transform;
+    GameObject hitDecal;
 
     int surfaceLayer;
     int damageLayer;
 
-    public wpn_shotgun(Transform transIn)
+    public wpn_shotgun(Transform transIn, GameObject objIn)
     {
         name = "shotgun";
 
         transform = transIn;
+
+        hitDecal = objIn; // explosion
 
         surfaceLayer = LayerMask.GetMask("World");
         damageLayer = LayerMask.GetMask("Enemy");
@@ -30,6 +33,7 @@ public class wpn_shotgun : weapon_state
         else
             max = 5;
 
+        GameObject.Instantiate(hitDecal, transform.position + transform.forward, transform.rotation);
         Debug.Log("[" + name + "] Shotgun: Firing shot with range " + max + ".");
 
         //getting the actual enemy hits
