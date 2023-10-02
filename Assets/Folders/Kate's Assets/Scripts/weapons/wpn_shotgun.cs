@@ -33,7 +33,7 @@ public class wpn_shotgun : weapon_state
         else
             max = 5;
 
-        GameObject.Instantiate(hitDecal, transform.position + transform.forward, transform.rotation);
+        //GameObject.Instantiate(hitDecal, transform.position + transform.forward, transform.rotation);
         Debug.Log("[" + name + "] Shotgun: Firing shot with range " + max + ".");
 
         //getting the actual enemy hits
@@ -48,6 +48,8 @@ public class wpn_shotgun : weapon_state
             if (Vector3.Angle(transform.forward, offset.normalized) <= 30) //if contact is within the angle of spread
             {
                 Debug.Log("[" + name + "] Shotgun: Found contact at relative position" + offset + ".");
+                GameObject decal = GameObject.Instantiate(hitDecal, transform.position, transform.rotation);
+                decal.GetComponent<RenderHit>().HitLine(transform.position, hit.transform.position);
 
                 hit.gameObject.GetComponent<ent_health>().DamageShotgun(offset, proximity, 75, 25, 20);
                 // damage, damage floor, knockback
