@@ -8,13 +8,13 @@ public class ButtonScript : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Start");
+        
     }
 
 
     void Update()
     {
-
+        
     }
 
     public void Pressed() 
