@@ -63,10 +63,10 @@ PrefabInstance:
     - target: {fileID: -4120263594717906378, guid: 8c68c9924392e9e4eae9614e2c83553a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: be6b8b855daaf5741a904c09b6a4ee35, type: 2}
+      objectReference: {fileID: 2100000, guid: cd5800b2f9269fa4abce254919ea805e, type: 2}
     - target: {fileID: 919132149155446097, guid: 8c68c9924392e9e4eae9614e2c83553a, type: 3}
       propertyPath: m_Name
-      value: Shotgun
+      value: Shotgun_test
       objectReference: {fileID: 0}
     - target: {fileID: 3034313992981033914, guid: 8c68c9924392e9e4eae9614e2c83553a, type: 3}
       propertyPath: m_IsActive
