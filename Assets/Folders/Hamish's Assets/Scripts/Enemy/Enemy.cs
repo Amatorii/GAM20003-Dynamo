@@ -99,7 +99,7 @@ namespace Hamish.Enemy
                 _canSeePlayer = false;
         }
 
-        protected IEnumerator LookAtPlayer()
+        protected void LookAtPlayer()
         {
             Quaternion lookRotation = Quaternion.LookRotation(playerObject.transform.position - transform.position);
             float time = 0;
@@ -107,7 +107,6 @@ namespace Hamish.Enemy
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
                 time += Time.deltaTime * 1.0f;
-                yield return null;
             }
         }
 

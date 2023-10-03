@@ -23,7 +23,6 @@ namespace Hamish.Enemy
 
         private void Update()
         {
-            StartCoroutine(LookAtPlayer());
             RunStateMachine();
         }
 
@@ -45,6 +44,7 @@ namespace Hamish.Enemy
         
         public override EnemyState AttackPlayer()
         {
+            LookAtPlayer();
             RaycastHit _hit;
             bool _isAimed = false;
 
@@ -61,7 +61,7 @@ namespace Hamish.Enemy
                 currentlyShooting = false;
             }
             
-            return new EnemyMove(this);
+            return currentState;
         }
 
         [SerializeField] private GameObject bullet;
@@ -74,7 +74,7 @@ namespace Hamish.Enemy
         {
             while (0 != _noBullets)
             {
-                GameObject _bullet = GameObject.Instantiate(bullet, gunNozzle.position + gunNozzle.forward, transform.rotation);
+                GameObject _bullet = GameObject.Instantiate(bullet, new Vector3(transform.position.x + xModifier, gunNozzle.position.y+yModifier, transform.position.z + zModifier) + gunNozzle.forward, transform.rotation);
                 yield return new WaitForSeconds(60 / rpm);
                 _noBullets--;
             }

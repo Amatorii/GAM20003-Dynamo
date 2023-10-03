@@ -2131,7 +2131,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 90
+  field of view: 120
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3267,7 +3267,7 @@ PrefabInstance:
       objectReference: {fileID: 526073715}
     - target: {fileID: 1187592639662712380, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
       propertyPath: groundSpeed
-      value: 20
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 1187592639662712380, guid: 925a9180cecef9c44834707c3a8bd9f5, type: 3}
       propertyPath: sensitivity
@@ -5213,6 +5213,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3997484075627732858, guid: bfb535d6fab4332498efd30259070de1, type: 3}
+      propertyPath: xModifier
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3997484075627732858, guid: bfb535d6fab4332498efd30259070de1, type: 3}
+      propertyPath: zModifier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4700682144918267377, guid: bfb535d6fab4332498efd30259070de1, type: 3}
       propertyPath: m_RootOrder
       value: 14
