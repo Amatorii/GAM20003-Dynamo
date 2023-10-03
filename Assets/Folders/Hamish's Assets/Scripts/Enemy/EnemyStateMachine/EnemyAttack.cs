@@ -12,7 +12,10 @@ namespace Hamish.Enemy
 
         public override EnemyState RunState()
         {
+            enemyClass.StopAgent();
             EnemyState stateToReturn = enemyClass.AttackPlayer();
+            if(enemyClass is ent_rangedEnemy && distanceToPlayer > 15.0f)
+                return new EnemyChase(enemyClass);
             return stateToReturn;
         }
     }

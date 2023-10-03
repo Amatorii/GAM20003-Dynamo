@@ -1372,6 +1372,7 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 0
+  currentPath: {x: 0, y: 0, z: 0}
   gun: {fileID: 1618565495}
   nozzle: {fileID: 1614049419}
   bullet: {fileID: 7270200737185115725, guid: a2d4649f7b563434d8aa51e53097997a, type: 3}
@@ -4868,6 +4869,7 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 0
+  currentPath: {x: 0, y: 0, z: 0}
   gun: {fileID: 1654541071}
   nozzle: {fileID: 606170169}
   bullet: {fileID: 7270200737185115725, guid: a2d4649f7b563434d8aa51e53097997a, type: 3}

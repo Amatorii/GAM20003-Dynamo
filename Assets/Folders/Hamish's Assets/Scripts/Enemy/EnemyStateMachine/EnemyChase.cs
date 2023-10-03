@@ -12,11 +12,12 @@ namespace Hamish.Enemy
 
         public override EnemyState RunState()
         {
-            if (!enemyClass._canSeePlayer)
-                return new EnemyIdle(enemyClass);
+            distanceToPlayer = Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position);
 
-            if (enemyClass is ent_rangedEnemy && Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position) < 5.0f)
+            if (enemyClass is ent_rangedEnemy && distanceToPlayer < 10.0f)
                 return new EnemyAttack(enemyClass);
+            if(enemyClass is ent_rangedEnemy && distanceToPlayer < 5.0f)
+                return new EnemyMove(enemyClass);
 
             enemyClass.MoveToPlayer();
 

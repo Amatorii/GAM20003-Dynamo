@@ -8,9 +8,10 @@ namespace Hamish.Enemy
     public class ent_rangedEnemy : Enemy
     {
         private bool currentlyShooting = true;
+        [Header("Class Specific Variables")]
         [SerializeField] private GameObject gun;
         public bool runStateMachine;
-        [SerializeField] private EnemyState currentState;
+        [SerializeField]private EnemyState currentState;
 
         protected override void Awake()
         { 
@@ -22,6 +23,7 @@ namespace Hamish.Enemy
 
         private void Update()
         {
+            StartCoroutine(LookAtPlayer());
             RunStateMachine();
         }
 
@@ -58,19 +60,21 @@ namespace Hamish.Enemy
                 StartCoroutine(ShootGun(3));
                 currentlyShooting = false;
             }
-            if(!_isAimed)
-                return new EnemyChase(this);
-            return new EnemyAttack(this);
+            
+            return new EnemyMove(this);
         }
 
         [SerializeField] private GameObject bullet;
-        [SerializeField] private Transform nozzle;
+        [SerializeField] private Transform gunNozzle;
         [SerializeField] private float rpm;
+        [SerializeField] private float xModifier;
+        [SerializeField] private float yModifier;
+        [SerializeField] private float zModifier;
         private IEnumerator ShootGun(int _noBullets)
         {
             while (0 != _noBullets)
             {
-                GameObject _bullet = GameObject.Instantiate(bullet, nozzle.position + nozzle.forward, transform.rotation);
+                GameObject _bullet = GameObject.Instantiate(bullet, gunNozzle.position + gunNozzle.forward, transform.rotation);
                 yield return new WaitForSeconds(60 / rpm);
                 _noBullets--;
             }
