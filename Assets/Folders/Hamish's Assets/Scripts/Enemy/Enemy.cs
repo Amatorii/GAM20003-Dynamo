@@ -118,7 +118,7 @@ namespace Hamish.Enemy
             while (time < 1)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
-                time += Time.deltaTime * 1.0f;
+                time += Time.deltaTime * 0.5f;
             }
         }
 
