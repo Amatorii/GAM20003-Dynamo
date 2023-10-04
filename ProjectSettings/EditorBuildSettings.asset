@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Folders/Kate's Assets/Levels/playtest_1.unity
     guid: 62bfde374dd390c4ea78e5020ce3e29e
   - enabled: 1
-    path: Assets/Folders/Electra's Assets/playtest_1_copy.unity
+    path: Assets/Folders/Electra's Assets/electra_playtest.unity
     guid: a443544b102867c45b7884ed9ffd73b8
   m_configObjects: {}
