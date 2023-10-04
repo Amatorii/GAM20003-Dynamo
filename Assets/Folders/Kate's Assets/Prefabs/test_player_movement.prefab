@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireball: {fileID: 4299516142843906018, guid: f599d8842f8869c49a6caa7507821faf, type: 3}
+  hitDecal: {fileID: 0}
   activeWeapon: 
 --- !u!1 &7574733409927538120
 GameObject:
@@ -123,7 +124,7 @@ GameObject:
   m_Layer: 3
   m_Name: test_player_movement
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -141,7 +142,7 @@ Transform:
   m_Children:
   - {fileID: 2991155746090096834}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &272088782851745060
 MonoBehaviour:
