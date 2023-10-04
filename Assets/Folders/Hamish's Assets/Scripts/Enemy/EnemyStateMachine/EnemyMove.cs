@@ -13,20 +13,27 @@ namespace Hamish.Enemy
         public override EnemyState RunState()
         {
             distanceToPlayer = Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position);
-            if (enemyClass._canSeePlayer && distanceToPlayer < 2.5f)
+            if (enemyClass is RangedEnemy)
             {
-                enemyClass.MoveAwayFromPlayer();
-                Debug.Log("[" + this + "]Message: RUN AWAY");
-                return this;
+                if (enemyClass._canSeePlayer && distanceToPlayer < 2.5f)
+                {
+                    enemyClass.MoveAwayFromPlayer();
+                    Debug.Log("[" + this + "]Message: RUN AWAY");
+                    return this;
+                }
+
+                if (enemyClass._canSeePlayer)
+                    return new EnemyChase(enemyClass);
+
+                if (!enemyClass._canSeePlayer && !enemyClass.IsEnemyMoving())
+                {
+                    enemyClass.Strafe();
+                    return this;
+                }
             }
-
-            if (enemyClass._canSeePlayer)
-                return new EnemyChase(enemyClass);
-
-            if (!enemyClass._canSeePlayer && !enemyClass.IsEnemyMoving())
+            if(enemyClass is MeleeEnemy)
             {
-                enemyClass.Strafe();
-                return this;
+
             }
             return this;
         }

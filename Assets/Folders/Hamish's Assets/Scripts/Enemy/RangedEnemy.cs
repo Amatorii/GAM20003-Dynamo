@@ -5,18 +5,16 @@ using UnityEngine;
 
 namespace Hamish.Enemy
 {
-    public class ent_rangedEnemy : Enemy
+    public class RangedEnemy : Enemy
     {
         private bool currentlyShooting = true;
         [Header("Class Specific Variables")]
         [SerializeField] private GameObject gun;
         public bool runStateMachine;
-        [SerializeField]private EnemyState currentState;
 
         protected override void Awake()
         { 
             base.Awake();
-            StartStateMachine(new EnemyIdle(this));
             Debug.Log(this);
             isAttacking = false;
         }
@@ -25,22 +23,6 @@ namespace Hamish.Enemy
         {
             RunStateMachine();
         }
-
-        #region StateMachine
-
-        private void StartStateMachine(EnemyState state)
-        {
-            currentState = state;
-            currentState.RunState();
-        }
-
-        private void RunStateMachine()
-        {
-            EnemyState nextState = currentState?.RunState();
-            currentState = nextState;
-            Debug.Log(currentState);
-        }
-        #endregion
         
         public override EnemyState AttackPlayer()
         {

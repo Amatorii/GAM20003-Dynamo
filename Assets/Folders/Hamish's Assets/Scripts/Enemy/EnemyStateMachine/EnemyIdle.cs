@@ -14,7 +14,7 @@ namespace Hamish.Enemy
         {
             if (enemyClass._canSeePlayer)
             {
-                if (enemyClass is ent_rangedEnemy && distanceToPlayer < 5.0f)
+                if (enemyClass is RangedEnemy && distanceToPlayer < 5.0f)
                     return new EnemyAttack(enemyClass);
 
                 return new EnemyChase(enemyClass);

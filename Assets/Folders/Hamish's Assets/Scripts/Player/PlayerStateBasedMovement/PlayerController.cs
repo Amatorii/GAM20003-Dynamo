@@ -151,5 +151,10 @@ namespace Hamish.player
             return sensitivity;
         }
 
+
+        public void IveBeenAttacked()
+        {
+            Debug.Log("Player has been attacked");
+        }
     }
 }

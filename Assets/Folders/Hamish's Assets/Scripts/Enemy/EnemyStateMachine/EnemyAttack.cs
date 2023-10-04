@@ -13,10 +13,20 @@ namespace Hamish.Enemy
         public override EnemyState RunState()
         {
             distanceToPlayer = Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position);
-            enemyClass.StopAgent();
             EnemyState stateToReturn = enemyClass.AttackPlayer();
-            if(enemyClass is ent_rangedEnemy && distanceToPlayer > 15.0f)
-                return new EnemyChase(enemyClass);
+
+            if (enemyClass is RangedEnemy)
+            {
+                enemyClass.StopAgent();
+                if(distanceToPlayer > 15.0f)
+                    return new EnemyChase(enemyClass);
+            }
+            if(enemyClass is MeleeEnemy)
+            {
+                enemyClass.MoveToPlayer();
+                if(distanceToPlayer > 3)
+                    return new EnemyChase(enemyClass);
+            }
             return stateToReturn;
         }
     }
