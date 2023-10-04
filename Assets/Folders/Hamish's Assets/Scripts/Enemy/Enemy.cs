@@ -24,8 +24,24 @@ namespace Hamish.Enemy
             StartCoroutine(FOVRoutine());
             Debug.Log("[" + this + "]: Sucessfully Initialized");
             Debug.Log("[" + this + "]: transform.right = " + transform.right);
-
+            StartStateMachine(new EnemyIdle(this));
         }
+
+        #region StateMachine
+        [SerializeField] protected EnemyState currentState;
+        protected void StartStateMachine(EnemyState state)
+        {
+            currentState = state;
+            currentState.RunState();
+        }
+
+        protected void RunStateMachine()
+        {
+            EnemyState nextState = currentState?.RunState();
+            currentState = nextState;
+            Debug.Log(currentState);
+        }
+        #endregion
 
         [Header("Vision Cone")]
         public float _radius;
@@ -39,10 +55,6 @@ namespace Hamish.Enemy
         public LayerMask targetMask;
         public LayerMask obstructionMask;
         protected Vector3 directToTarget;
-
-        [Header("NavMeshPath")]
-        public Vector3 currentPath;
-
         protected IEnumerator FOVRoutine()
         {
             WaitForSeconds wait = new WaitForSeconds(_delay);

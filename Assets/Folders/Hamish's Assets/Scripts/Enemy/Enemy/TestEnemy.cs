@@ -5,8 +5,13 @@ using UnityEngine;
 
 namespace Hamish.Enemy 
 {
-    public class TestEnemy : EnemyClass
+    public class TestEnemy : Enemy
     {
+        public override EnemyState AttackPlayer()
+        {
+            throw new System.NotImplementedException();
+        }
+
         // Start is called before the first frame update
         void Start()
         {
