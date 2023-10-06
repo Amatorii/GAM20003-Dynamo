@@ -7,6 +7,9 @@ public class weapon_master : MonoBehaviour
     public GameObject fireball;
     public GameObject hitDecal;
 
+    private GameObject currentWeapon;
+    public GameObject[] weapons;
+
     [SerializeField] private string activeWeapon;
     // debug
 
@@ -23,6 +26,7 @@ public class weapon_master : MonoBehaviour
 
         wpnActive = wpnFireball;
         activeWeapon = wpnActive.name;
+        currentWeapon = weapons[0];
     }
 
     void Update()
@@ -30,9 +34,15 @@ public class weapon_master : MonoBehaviour
         if (Input.GetButtonDown("Fire3"))
         {
             if (wpnActive == wpnFireball)
+            {
                 wpnActive = wpnShotgun;
+                UpdateViewmodel(weapons[1]);
+            }
             else
+            {
                 wpnActive = wpnFireball;
+                UpdateViewmodel(weapons[0]);
+            }
 
             activeWeapon = wpnActive.name;
         }
@@ -40,5 +50,12 @@ public class weapon_master : MonoBehaviour
 
         else if (Input.GetButtonDown("Fire1"))
             wpnActive.fire();
+    }
+
+    void UpdateViewmodel(GameObject newWeapon)
+    {
+        currentWeapon.SetActive(false);
+        newWeapon.SetActive(true);
+        currentWeapon = newWeapon;
     }
 }
