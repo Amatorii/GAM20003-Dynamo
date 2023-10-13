@@ -27,13 +27,12 @@ namespace Hamish.Enemy
         public override EnemyState AttackPlayer()
         {
             LookAtPlayer();
+            AimAtPlayer();
             RaycastHit _hit;
             bool _isAimed = false;
 
-            Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out _hit, Mathf.Infinity);
+            Physics.Raycast(gunNozzle.position, gunNozzle.TransformDirection(Vector3.forward), out _hit, Mathf.Infinity);
             
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red, Mathf.Infinity);
-
             if (_hit.collider != null)
                 _isAimed = _hit.collider.CompareTag("Player");
 
@@ -46,6 +45,31 @@ namespace Hamish.Enemy
             return currentState;
         }
 
+        private void AimAtPlayer()
+        {
+                Debug.Log("Aiming");
+                Vector3 dir = playerObject.transform.position - gunNozzle.position;
+                //dir.x = 0;
+
+                Quaternion rot = Quaternion.LookRotation(dir);
+                gunNozzle.rotation = Quaternion.Lerp(gunNozzle.rotation, rot, 10 * Time.deltaTime);
+
+        }
+
+        private void OnDrawGizmos()
+        {
+            RaycastHit _hit;
+            Physics.Raycast(gunNozzle.position, gunNozzle.forward, out _hit, Mathf.Infinity);
+            if (_hit.collider != null)
+            {
+                if (_hit.collider.CompareTag("Player"))
+                    Gizmos.color = Color.red;
+                else
+                    Gizmos.color = Color.blue;
+            }
+            Gizmos.DrawLine(gunNozzle.position, transform.forward* 100);
+        }
+
         [SerializeField] private GameObject bullet;
         [SerializeField] private Transform gunNozzle;
         [SerializeField] private float rpm;
@@ -56,23 +80,12 @@ namespace Hamish.Enemy
         {
             while (0 != _noBullets)
             {
-                GameObject _bullet = GameObject.Instantiate(bullet, new Vector3(transform.position.x + xModifier, gunNozzle.position.y+yModifier, transform.position.z + zModifier) + gunNozzle.forward, transform.rotation);
+                GameObject _bullet = GameObject.Instantiate(bullet, gunNozzle.position + gunNozzle.forward, gunNozzle.rotation);
                 yield return new WaitForSeconds(60 / rpm);
                 _noBullets--;
             }
             yield return new WaitForSeconds(1.0f);
             currentlyShooting = true;
         }
-        /*
-        private IEnumerator ShootAtPlayer(Action<int> callback)
-        {
-            isAttacking = true;
-            Debug.Log("Shooting");
-            yield return new WaitForSeconds(2);
-            callback(1);
-            isAttacking = false;
-            yield return null;
-        }
-        */
     }
 }

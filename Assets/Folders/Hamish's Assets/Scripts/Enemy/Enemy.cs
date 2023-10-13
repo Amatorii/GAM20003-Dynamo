@@ -110,10 +110,10 @@ namespace Hamish.Enemy
             else if (_canSeePlayer)
                 _canSeePlayer = false;
         }
-
+/*
         protected void LookAtPlayer()
         {
-            Quaternion lookRotation = Quaternion.LookRotation(playerObject.transform.position - transform.position);
+            Quaternion lookRotation = Quaternion.LookRotation((playerObject.transform.position) - transform.position);
             float time = 0;
             while (time < 1)
             {
@@ -121,7 +121,16 @@ namespace Hamish.Enemy
                 time += Time.deltaTime * 0.5f;
             }
         }
+*/
+        
+        protected void LookAtPlayer()
+        {
+            Vector3 dir = playerObject.transform.position - transform.position;
+            dir.y = 0;
 
+            Quaternion rot = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, 10 * Time.deltaTime);
+        }
         public bool IsEnemyMoving()
         {
             if (_agent.hasPath)
