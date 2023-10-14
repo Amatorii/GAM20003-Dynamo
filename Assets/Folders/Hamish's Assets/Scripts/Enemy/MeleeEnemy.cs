@@ -37,8 +37,9 @@ namespace Hamish.Enemy
         {
             if(canAttackPlayer)
             {
-                PlayerController playerScript = playerObject.GetComponent<PlayerController>();
-                playerScript.IveBeenAttacked();
+                ent_health playerScript = playerObject.GetComponent<ent_health>();
+                playerScript.Damage(damage);
+                Debug.Log("I've attacked the player");
                 yield return new WaitForSeconds(1);
             }
             isAttacking = false;

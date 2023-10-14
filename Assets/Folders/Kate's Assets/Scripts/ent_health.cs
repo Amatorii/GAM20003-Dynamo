@@ -17,7 +17,8 @@ public class ent_health : MonoBehaviour
         body = GetComponent<state_manager>();
     }
 
-    bool Damage(int damage)
+    //H: I've made this public so the enemies can call it
+    public bool Damage(int damage)
     {
         if (immortal)
             return false;

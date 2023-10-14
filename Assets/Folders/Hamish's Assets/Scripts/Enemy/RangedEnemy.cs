@@ -38,7 +38,7 @@ namespace Hamish.Enemy
 
             if (currentlyShooting && _isAimed)
             {
-                StartCoroutine(ShootGun(3));
+                StartCoroutine(ShootGun(burstAmount));
                 currentlyShooting = false;
             }
             
@@ -52,7 +52,7 @@ namespace Hamish.Enemy
                 //dir.x = 0;
 
                 Quaternion rot = Quaternion.LookRotation(dir);
-                gunNozzle.rotation = Quaternion.Lerp(gunNozzle.rotation, rot, 10 * Time.deltaTime);
+                gunNozzle.rotation = Quaternion.Lerp(gunNozzle.rotation, rot, turningSpeed * 2f * Time.deltaTime);
 
         }
 
@@ -73,14 +73,18 @@ namespace Hamish.Enemy
         [SerializeField] private GameObject bullet;
         [SerializeField] private Transform gunNozzle;
         [SerializeField] private float rpm;
-        [SerializeField] private float xModifier;
-        [SerializeField] private float yModifier;
-        [SerializeField] private float zModifier;
+        [Range(0, 10)][SerializeField] private int burstAmount;
+        [Range(0, 500)][SerializeField] private int bulletSpeed;
+        //[SerializeField] private float xModifier;
+        //[SerializeField] private float yModifier;
+        //[SerializeField] private float zModifier;
         private IEnumerator ShootGun(int _noBullets)
         {
             while (0 != _noBullets)
             {
                 GameObject _bullet = GameObject.Instantiate(bullet, gunNozzle.position + gunNozzle.forward, gunNozzle.rotation);
+                _bullet.GetComponent<en_projectile_bullet>().SetDamage(damage);
+                _bullet.GetComponent<en_projectile_bullet>().SetSpeed(bulletSpeed);
                 yield return new WaitForSeconds(60 / rpm);
                 _noBullets--;
             }

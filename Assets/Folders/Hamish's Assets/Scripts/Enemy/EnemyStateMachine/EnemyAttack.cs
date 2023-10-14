@@ -17,8 +17,9 @@ namespace Hamish.Enemy
 
             if (enemyClass is RangedEnemy)
             {
+                int distance = enemyClass.maxDistanceToChase;
                 enemyClass.StopAgent();
-                if(distanceToPlayer > 15.0f)
+                if(distanceToPlayer > distance)
                     return new EnemyChase(enemyClass);
             }
             if(enemyClass is MeleeEnemy)

@@ -23,8 +23,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453091271400722252}
-  m_LocalRotation: {x: -0.03472922, y: 0.74075806, z: -0.018600896, w: -0.67061573}
-  m_LocalPosition: {x: 0.04550495, y: 1.296898, z: 0.93162817}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65,7 +65,7 @@ Transform:
   - {fileID: 787710947497046339}
   - {fileID: 671659320243777442}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3997484075627732858
 MonoBehaviour:
@@ -79,6 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70f211f43f78304e94e617ee97e124d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 4
+  moveSpeed: 3.5
   _radius: 20
   _angle: 330
   _delay: 1
@@ -91,15 +93,12 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 192
-  currentPath: {x: 0, y: 0, z: 0}
   gun: {fileID: 7323708793277722503}
   runStateMachine: 1
   bullet: {fileID: 7270200737185115725, guid: a2d4649f7b563434d8aa51e53097997a, type: 3}
   gunNozzle: {fileID: 787710947497046339}
   rpm: 600
-  xModifier: 0.8
-  yModifier: 0
-  zModifier: 1
+  burstAmount: 3
 --- !u!136 &6907417285042391538
 CapsuleCollider:
   m_ObjectHideFlags: 0
