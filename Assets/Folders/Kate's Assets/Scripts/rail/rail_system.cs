@@ -12,8 +12,8 @@ public class rail_system : MonoBehaviour
     [SerializeField] private GameObject segmentPrefab; // basic segment prefab for setup
 
     // rail segment data
-    private rail_segment[] segmentList; // list of all rail segments
-    private float[] segmentLengths; // holds the lengths of each rail segment
+    [SerializeField] private rail_segment[] segmentList; // list of all rail segments
+    [SerializeField] private float[] segmentLengths; // holds the lengths of each rail segment
 
     // rail data
     public float totalLength; // combined length of all segments
@@ -26,7 +26,7 @@ public class rail_system : MonoBehaviour
     {
         Debug.Log("[" + name + "] Rail System: Creating new system...");
 
-        segmentList = new rail_segment[pointsIn.Length - 1];
+        segmentList = new rail_segment[pointsIn.Length - 1]; // pointsIn.Length - 1
         segmentLengths = new float[pointsIn.Length - 1];
         totalLength = 0;
 
@@ -61,7 +61,13 @@ public class rail_system : MonoBehaviour
     int FindSegment(float posIn) // finds out which segment a linear position is on - returns -1 if there is an error (shouldn't be possible)
     {
         if (posIn > totalLength || posIn < 0)
-        { Debug.Log("[" + name + "] Find rail segment: couldn't find segment for input " + posIn + " - out of bounds."); return -1; }
+        {
+            Debug.LogWarning("[" + name + "] Find rail segment: couldn't find segment for input " + posIn + " - out of bounds.");
+            return -1;
+        }
+
+        else if (segmentList.Length == 1)
+            return 0;
 
         else
         {
@@ -73,7 +79,7 @@ public class rail_system : MonoBehaviour
                 if (posIn <= n)
                     return i; break;
             }
-            Debug.Log("[" + name + "] Find rail segment: couldn't find segment for input " + posIn + " - unknown error.");
+            Debug.LogWarning("[" + name + "] Find rail segment: couldn't find segment for input " + posIn + " - unknown error.");
             return -1;
         }
     }
@@ -83,11 +89,12 @@ public class rail_system : MonoBehaviour
         float pos = Mathf.Clamp(posIn, 0, totalLength); // clamping it so we don't get any fucked up returns
 
         int n = FindSegment(pos); // gets index of rail segment
-        Debug.Log("[" + name + "] Project on rail: found linear position " + pos + " on segment " + n + ".");
+
+        //Debug.Log("[" + name + "] Project on rail: found linear position " + pos + " on segment " + n + ".");
 
         for (int i = 0; i < n; i++)
         { pos -= segmentLengths[i]; } // gets length on the segment itself
-        Debug.Log("[" + name + "] Project on rail: linear position on segment " + n + " is " + pos + ".");
+        //Debug.Log("[" + name + "] Project on rail: linear position on segment " + n + " is " + pos + ".");
 
         return segmentList[n].ProjectOnSegment(pos);
     }
@@ -103,7 +110,7 @@ public class rail_system : MonoBehaviour
             for (int i = 0; i < index; i++)
             { count += segmentLengths[i]; }
 
-            Debug.Log("[" + name + "] Get linear position: local position on segment " + index + " converts to " + count + ".");
+            //Debug.Log("[" + name + "] Get linear position: local position on segment " + index + " converts to " + count + ".");
 
             return count + posIn;
         }

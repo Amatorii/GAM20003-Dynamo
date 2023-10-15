@@ -10,6 +10,9 @@ public class move_air : player_move
     int railMask;
     // the layermask for rails
 
+    // variables
+    float railMin = 10; // minimum speed for on rail
+
     public move_air(CharacterController bodyIn) // constructor - missing a bit from original, might cause problems down the line
     {
         name = "air";
@@ -45,7 +48,7 @@ public class move_air : player_move
         if (body.isGrounded && body.velocity[1] <= 0)
             return new move_ground(body);
 
-        else
+        else if (Vector3.ProjectOnPlane(body.velocity, Vector3.up).magnitude != 0)
         {
             Debug.DrawRay(body.transform.position + (Vector3.down * body.height / 2), Vector3.forward, Color.red);
             Collider[] railIn = Physics.OverlapSphere(body.transform.position + (Vector3.down * body.height / 2) + (Vector3.up * body.radius), body.radius, railMask);
@@ -55,8 +58,10 @@ public class move_air : player_move
                 return ToRail(railIn[0].gameObject.GetComponent<rail_segment>());
             }
             else
-            { Debug.Log("[" + name + "] Check State: No transition. "); return null; }
+                return null;
         }
+        else
+            return null;
     }
 
 #region functions
@@ -69,9 +74,14 @@ public class move_air : player_move
         railPos = rail.GetLinearPosition(railPos, railIn.index); // converting to linear position
 
         Vector3 velocity = body.velocity;
+        velocity[1] = 0;
+        
+        if (velocity.magnitude < railMin)
+            velocity = velocity.normalized * railMin;
+
         float speed = velocity.magnitude; // linear speed
 
-        if (Vector3.Dot(railIn.transform.forward, velocity.normalized) > 0)
+        if (Vector3.Dot(railIn.transform.forward, velocity.normalized) < 0)
             speed *= -1; // changing direction if they are going backwards
 
         return new move_rail(body, rail, railPos, speed);

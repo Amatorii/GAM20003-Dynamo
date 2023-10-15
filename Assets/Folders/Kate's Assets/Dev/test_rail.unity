@@ -522,6 +522,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &855947975 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2991155746090096834, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
+  m_PrefabInstance: {fileID: 1927442016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1133637936
 GameObject:
   m_ObjectHideFlags: 0
@@ -2192,6 +2197,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 272088782851745060, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 855947975}
     - target: {fileID: 7574733409927538120, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
       propertyPath: m_Name
       value: test_player_movement

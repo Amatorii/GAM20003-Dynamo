@@ -333,7 +333,7 @@ MonoBehaviour:
   - {fileID: 822057055}
   - {fileID: 498525489}
   - {fileID: 650894265}
-  radius: 0.25
+  radius: 0.5
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
   totalLength: 0
 --- !u!64 &100466806
@@ -4044,6 +4044,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 272088782851745060, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 867480961}
     - target: {fileID: 7574733409927538120, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
       propertyPath: m_Name
       value: test_player_movement
@@ -4535,7 +4539,7 @@ MonoBehaviour:
   pointsIn:
   - {fileID: 1350551791}
   - {fileID: 1296620267}
-  radius: 0.25
+  radius: 0.5
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
   totalLength: 0
 --- !u!1 &640001023
@@ -4637,7 +4641,7 @@ MonoBehaviour:
   pointsIn:
   - {fileID: 2061678447}
   - {fileID: 198309112}
-  radius: 0.25
+  radius: 0.5
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
   totalLength: 0
 --- !u!64 &665154881
@@ -5149,7 +5153,7 @@ MonoBehaviour:
   - {fileID: 1529067725}
   - {fileID: 953898368}
   - {fileID: 1715532050}
-  radius: 0.25
+  radius: 0.5
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
   totalLength: 0
 --- !u!43 &777443064
@@ -5385,7 +5389,7 @@ MonoBehaviour:
   pointsIn:
   - {fileID: 306571240}
   - {fileID: 640001024}
-  radius: 0.25
+  radius: 0.5
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
   totalLength: 0
 --- !u!64 &828052098
@@ -5575,6 +5579,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &867480961 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2991155746090096834, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
+  m_PrefabInstance: {fileID: 388427111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &916533968
 GameObject:
   m_ObjectHideFlags: 0
@@ -7605,7 +7614,7 @@ MonoBehaviour:
   - {fileID: 1824852655}
   - {fileID: 118236895}
   - {fileID: 415130230}
-  radius: 0.25
+  radius: 0.5
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
   totalLength: 0
 --- !u!64 &1361142767
@@ -8989,7 +8998,7 @@ MonoBehaviour:
   - {fileID: 1341163828}
   - {fileID: 307948427}
   - {fileID: 2028836959}
-  radius: 0.25
+  radius: 0.5
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
   totalLength: 0
 --- !u!1 &1697831951
@@ -9412,7 +9421,7 @@ MonoBehaviour:
   pointsIn:
   - {fileID: 1697831952}
   - {fileID: 190524631}
-  radius: 0.25
+  radius: 0.5
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
   totalLength: 0
 --- !u!64 &2040435100

@@ -12,7 +12,7 @@ public class player_look : MonoBehaviour
     [SerializeField] private float camAngle;
     // euler angle of camera
 
-    [SerializeField] private Transform camera;
+    [SerializeField] private Transform cam;
 
     void Awake()
     {
@@ -33,6 +33,8 @@ public class player_look : MonoBehaviour
         Quaternion look = new Quaternion();
         look.eulerAngles = Vector3.right * camAngle;
 
-        camera.localRotation = look;
+        cam.localRotation = look;
+
+        Debug.DrawRay(cam.position, cam.forward, Color.blue);
     }
 }
