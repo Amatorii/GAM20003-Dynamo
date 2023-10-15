@@ -61,7 +61,7 @@ public class rail_system : MonoBehaviour
     int FindSegment(float posIn) // finds out which segment a linear position is on - returns -1 if there is an error (shouldn't be possible)
     {
         if (posIn > totalLength || posIn < 0)
-        { return -1; Debug.Log("[" + name + "] Find rail segment: couldn't find segment for input " + posIn + " - out of bounds."); }
+        { Debug.Log("[" + name + "] Find rail segment: couldn't find segment for input " + posIn + " - out of bounds."); return -1; }
 
         else
         {
@@ -73,8 +73,8 @@ public class rail_system : MonoBehaviour
                 if (posIn <= n)
                     return i; break;
             }
-            return -1;
             Debug.Log("[" + name + "] Find rail segment: couldn't find segment for input " + posIn + " - unknown error.");
+            return -1;
         }
     }
 

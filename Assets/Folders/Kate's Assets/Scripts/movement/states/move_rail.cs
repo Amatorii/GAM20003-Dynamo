@@ -45,18 +45,16 @@ public class move_rail : player_move
         }
         // jump
 
-        /*
-        else if ((velocity >= 0 && position >= rail.totalLength) || (velocity < 0 position <= 0))
+        else if ((velocity >= 0 && position >= rail.totalLength) || (velocity < 0 && position <= 0))
         {
             Vector3 velOut = (rail.GetDirection(position) * velocity);
             // adding force to current velocity with vertical magnitude becoming at least 7.5
 
             rail.StartCoroutine("Skip");
-
+            body.enabled = true;
             return new move_air(body, velOut);
         }
         // end of rail
-        */
 
         else
             return null;

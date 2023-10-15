@@ -23,6 +23,7 @@ public class move_air : player_move
         name = "air";
         body = bodyIn;
         world = LayerMask.GetMask("World");
+        railMask = LayerMask.GetMask("Rail");
 
         Debug.Log("[" + name + "] Movement: Launched with a velocity of " + (launch) + ".");
         body.Move(launch * Time.deltaTime);
@@ -46,14 +47,15 @@ public class move_air : player_move
 
         else
         {
+            Debug.DrawRay(body.transform.position + (Vector3.down * body.height / 2), Vector3.forward, Color.red);
             Collider[] railIn = Physics.OverlapSphere(body.transform.position + (Vector3.down * body.height / 2) + (Vector3.up * body.radius), body.radius, railMask);
             if (railIn.Length != 0)
             {
-                Debug.Log("[" + name + "] Check State: made contact with a rail.");
-                return ToRail(railIn[1].gameObject.GetComponent<rail_segment>());
+                Debug.Log("[" + name + "] Check State: Made contact with a rail. " + railIn.Length + " contacts total.");
+                return ToRail(railIn[0].gameObject.GetComponent<rail_segment>());
             }
             else
-                return null;
+            { Debug.Log("[" + name + "] Check State: No transition. "); return null; }
         }
     }
 
