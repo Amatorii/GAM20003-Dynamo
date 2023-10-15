@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class move_rail : player_move
 {
-    rail_system rail;
+    public rail_system rail;
     float position; // linear position on rail
     float velocity; // signed linear velocity - does not change
 
@@ -68,6 +68,11 @@ public class move_rail : player_move
     }
 
     #region functions
+
+    public void railSkip()
+    {
+        rail.StartCoroutine("Skip");
+    }
 
     #endregion
 }

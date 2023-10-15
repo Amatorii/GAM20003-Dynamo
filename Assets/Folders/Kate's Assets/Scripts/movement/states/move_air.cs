@@ -36,8 +36,18 @@ public class move_air : player_move
     public override void Move() // called every frame
     {
         Vector3 velocity = body.velocity;
+        
+        float grav = Mathf.MoveTowards(velocity[1], -30, 20 * Time.deltaTime);
+        if (grav > 15) grav = 15; // vertical speed clamp
 
-        velocity[1] = Mathf.MoveTowards(velocity[1], -30, 20 * Time.deltaTime);
+        velocity[1] = 0;
+
+        Vector3 intention = Vector3.ClampMagnitude((body.transform.right * moveInput.inputX + body.transform.forward * moveInput.inputY), 1);
+
+        if (Vector3.Dot(intention, velocity) < 0 || Vector3.Project(intention * 10, velocity).magnitude <= 1)
+            velocity += intention * Mathf.Clamp01(100 * Time.deltaTime);
+
+        velocity[1] = grav;
 
         body.Move(velocity * Time.deltaTime);
         // velocity applied to the player
@@ -45,7 +55,7 @@ public class move_air : player_move
 
     public override player_move CheckState() // used to see if the player should enter a new movement state
     {
-        if (body.isGrounded && body.velocity[1] <= 0)
+        if (body.isGrounded && body.velocity[1] <= 6)
             return new move_ground(body);
 
         else if (Vector3.ProjectOnPlane(body.velocity, Vector3.up).magnitude != 0)

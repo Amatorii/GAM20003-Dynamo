@@ -53,6 +53,9 @@ public class state_manager : MonoBehaviour
     {
         Debug.Log("[" + name + "] Movement: Changing movement state from " + stateCurrent.name + " to air.");
 
+        if (stateCurrent.name == "rail")
+            stateCurrent.railSkip();
+
         stateCurrent = new move_air(body, launch);
         stateName = stateCurrent.name;
     }

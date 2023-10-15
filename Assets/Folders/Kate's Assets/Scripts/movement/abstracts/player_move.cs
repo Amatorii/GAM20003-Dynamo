@@ -35,4 +35,7 @@ public abstract class player_move
     public abstract void Move(); // called every frame, returns velocity
 
     public abstract player_move CheckState(); // used to see if the player should enter a new movement state
+
+    public void railSkip() // fix for a rail grinding thing
+    { }
 }

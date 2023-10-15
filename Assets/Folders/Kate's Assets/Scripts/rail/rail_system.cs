@@ -77,7 +77,7 @@ public class rail_system : MonoBehaviour
             {
                 n += segmentLengths[i];
                 if (posIn <= n)
-                    return i; break;
+                    return i;
             }
             Debug.LogWarning("[" + name + "] Find rail segment: couldn't find segment for input " + posIn + " - unknown error.");
             return -1;
