@@ -2,24 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
-    
-
-    void Start()
+    public void SceneLoad(string load)
     {
-        
+        SceneManager.LoadScene(load);
     }
 
-
-    void Update()
+    public void QuitGame()
     {
-        
-    }
-
-    public void Pressed() 
-    {
-        Debug.Log("Pressed");
+        Application.Quit();
     }
 }
