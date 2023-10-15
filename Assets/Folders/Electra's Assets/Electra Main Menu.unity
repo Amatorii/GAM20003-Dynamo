@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -467,7 +467,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 192
-    _typelessdata: 000000bfdfc4c3314df99bbe000000000000803f000000000000803f0000000000000000000080bf0000003352953b3e000000bfdfc4c33146f99b3e000000000000803f000000000000803f0000000000000000000080bf000000330a8a553f0100003fdfc4c3314df99bbe000000000000803f000000000000803f0000000000000000000080bf0000803f52953b3e0100003fdfc4c33146f99b3e000000000000803f000000000000803f0000000000000000000080bf0000803f0a8a553f
+    _typelessdata: 000000bfdfc4c3314df99bbe000000000000803f000000000000803f0000000000000000000080bf000000335295273e000000bfdfc4c33146f99b3e000000000000803f000000000000803f0000000000000000000080bf000000330a8a503f0100003fdfc4c3314df99bbe000000000000803f000000000000803f0000000000000000000080bf0000803f5295273e0100003fdfc4c33146f99b3e000000000000803f000000000000803f0000000000000000000080bf0000803f0a8a503f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -678,7 +678,7 @@ MonoBehaviour:
       m_SwapUV: 0
       m_Fill: 1
       m_Scale: {x: 1, y: 1.0684065}
-      m_Offset: {x: -0.5, y: -0.5086623}
+      m_Offset: {x: -0.5, y: -0.48913103}
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
@@ -698,10 +698,10 @@ MonoBehaviour:
   - {x: 0.50000006, y: 0.0000000056976286, z: -0.3046364}
   - {x: 0.50000006, y: 0.0000000056976286, z: 0.30463618}
   m_Textures0:
-  - {x: 0.000000029802322, y: 0.1831868}
-  - {x: 0.000000029802322, y: 0.83413756}
-  - {x: 1, y: 0.1831868}
-  - {x: 1, y: 0.83413756}
+  - {x: 0.000000029802322, y: 0.16365555}
+  - {x: 0.000000029802322, y: 0.8146063}
+  - {x: 1, y: 0.16365555}
+  - {x: 1, y: 0.8146063}
   m_Textures2: []
   m_Textures3: []
   m_Tangents:
@@ -718,7 +718,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 180981170}
-  m_VersionIndex: 10390
+  m_VersionIndex: 10414
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
