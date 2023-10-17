@@ -58,7 +58,7 @@ MonoBehaviour:
   enemyKnockback: 20
   playerDamage: 0
   playerDamageFloor: 0
-  playerKnockback: 15
+  playerKnockback: 10
   explosionLayers:
   - Player
   - Enemy

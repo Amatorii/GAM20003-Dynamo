@@ -4,98 +4,83 @@ using UnityEngine;
 
 public class weapon_master : MonoBehaviour
 {
-    public GameObject fireball;
-    public GameObject hitDecal;
-
-    private GameObject currentWeapon;
-    public List<GameObject> weapons;
-    public int weaponIndex;
-
     public bool receiveInput = true;
+    // used for pausing
 
-    [SerializeField] private string activeWeapon;
-    // debug
+    [SerializeField] private weapon_state[] wpnList;
+    // array of weapons
 
-    weapon_state wpnActive;
-    // current active weapon
+    int wpnActive;
+    // current active weapon (defaults to 0)
 
-    weapon_state wpnShotgun;
-    weapon_state wpnFireball;
-    List<weapon_state> weaponFunction;
-
+    float cooldown; // for firing rate
 
     void Awake()
     {
-        wpnShotgun = new wpn_shotgun(transform, hitDecal);
-        wpnFireball = new wpn_fireball(transform, fireball);
-
-        weaponFunction = new List<weapon_state> { wpnFireball, wpnShotgun };
-
-        wpnActive = wpnFireball;
-        activeWeapon = wpnActive.name;
-        currentWeapon = weapons[0];
+        wpnActive = 0;
+        cooldown = 0;
     }
 
     void Update()
     {
         if (receiveInput) 
-        { 
-        
+        {
+            cooldown = Mathf.MoveTowards(cooldown, 0, Time.deltaTime);
+
+            #region changing weapons
+
+            //scroll wheel
             if (Input.mouseScrollDelta.y > 0)
             {
-                weaponIndex++;
-                if (weaponIndex == weapons.Count)
-                    weaponIndex = 0;
-                wpnActive = weaponFunction[weaponIndex];
-                UpdateViewmodel(weapons[weaponIndex]);
+                int i = wpnActive + 1;
+
+                if (i >= wpnList.Length)
+                    i = 0;
+
+                ChangeWeapon(i);
             }
             if (Input.mouseScrollDelta.y < 0)
             {
-                weaponIndex--;
-                if (weaponIndex == -1)
-                    weaponIndex = weapons.Count - 1;
-                wpnActive = weaponFunction[weaponIndex];
-                UpdateViewmodel(weapons[weaponIndex]);
+                int i = wpnActive - 1;
+
+                if (i < 0)
+                    i = wpnList.Length -1;
+
+                ChangeWeapon(i);
             }
 
+
+            // number keys
             if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                UpdateViewmodel(weapons[0]);
-                wpnActive = wpnFireball;
-            }
+                ChangeWeapon(0);
+
             if (Input.GetKeyDown(KeyCode.Alpha2))
+                ChangeWeapon(1);
+            #endregion
+
+            // firing
+            else if (cooldown == 0 && Input.GetButton("Fire1"))
             {
-                UpdateViewmodel(weapons[1]);
-                wpnActive = wpnShotgun;
+                wpnList[wpnActive].fire();
+                cooldown = wpnList[wpnActive].fireRate;
             }
-
-            //if (Input.GetButtonDown("Fire3"))
-            //{
-            //    if (wpnActive == wpnFireball)
-            //    {
-            //        wpnActive = wpnShotgun;
-            //        UpdateViewmodel(weapons[1]);
-            //    }
-            //    else
-            //    {
-            //        wpnActive = wpnFireball;
-            //        UpdateViewmodel(weapons[0]);
-            //    }
-            //
-            //    activeWeapon = wpnActive.name;
-            //}
-            // this is a dev feature just so we can try these 2 out
-
-            else if (Input.GetButtonDown("Fire1"))
-                wpnActive.fire();
-        
         }
     }
 
-    void UpdateViewmodel(GameObject newWeapon)
+    void ChangeWeapon(int wpnNew) // sets new weapon
     {
-        currentWeapon.SetActive(false);
-        currentWeapon = newWeapon;
-        currentWeapon.SetActive(true);
+        // enables the correct viewmodel and disables all others
+        if (wpnList[wpnActive].model != null)
+            wpnList[wpnActive].model.SetActive(false);
+        
+        if (wpnList[wpnNew].model != null)
+            wpnList[wpnNew].model.SetActive(true);
+
+
+        cooldown = wpnList[wpnNew].fireRate;
+
+        wpnActive = wpnNew;
+
+        Debug.Log("[" + name + "] Weapon Master: Switching active weapon to " + wpnList[wpnActive].name + ".");
     }
 }

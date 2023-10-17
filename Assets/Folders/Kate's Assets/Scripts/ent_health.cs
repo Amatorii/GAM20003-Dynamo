@@ -52,7 +52,7 @@ public class ent_health : MonoBehaviour
             Vector3 launch = offset.normalized * knockback * proximity;
 
             Debug.Log("[" + name + "] Explosion Damage: Received knockback force of " + launch + ".");
-            body.Launch(launch);
+            body.Launch(body.velocity + launch);
         }
     }
 
@@ -67,7 +67,7 @@ public class ent_health : MonoBehaviour
             Vector3 launch = (offset.normalized * knockback * proximity) + Vector3.up * 7.5f;
 
             Debug.Log("[" + name + "] Shotgun Damage: Received knockback force of " + launch + ".");
-            body.Launch(launch);
+            body.Launch(body.velocity + launch);
         }
     }
 }

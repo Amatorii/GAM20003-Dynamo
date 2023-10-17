@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3173383221062245899}
   - component: {fileID: 6297461530264847939}
   - component: {fileID: 4072180897515572514}
+  - component: {fileID: 6933342305121499622}
+  - component: {fileID: 8918156496795123239}
   m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -105,9 +107,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e8563c1958e7a479c2e946b459f8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireball: {fileID: 4299516142843906018, guid: f599d8842f8869c49a6caa7507821faf, type: 3}
-  hitDecal: {fileID: 0}
-  activeWeapon: 
+  receiveInput: 1
+  wpnList:
+  - {fileID: 8918156496795123239}
+  - {fileID: 6933342305121499622}
+--- !u!114 &6933342305121499622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5672395661162830067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd67e7eb55ba6ff4e81f784c12256b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Shotgun
+  fireRate: 1.2
+  projectile: {fileID: 0}
+  model: {fileID: 0}
+  body: {fileID: 9057207270331360913}
+  range: 5
+  knockback: 10
+  spread: 30
+  damageBase: 50
+  damage: 100
+--- !u!114 &8918156496795123239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5672395661162830067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 520e930ff75c0234ca273ada3c929157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Fireball
+  fireRate: 0.8
+  projectile: {fileID: 4299516142843906018, guid: f599d8842f8869c49a6caa7507821faf, type: 3}
+  model: {fileID: 0}
 --- !u!1 &7574733409927538120
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +183,7 @@ Transform:
   m_Children:
   - {fileID: 2991155746090096834}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &272088782851745060
 MonoBehaviour:
@@ -156,11 +197,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9422234e56a646445a32f33d4f1fc99b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  receiveInput: 1
   sensitivity: 1
   mouseX: 0
   mouseY: 0
   camAngle: 0
-  camera: {fileID: 2991155746090096834}
+  cam: {fileID: 2991155746090096834}
 --- !u!143 &1901690133421988080
 CharacterController:
   m_ObjectHideFlags: 0
@@ -200,9 +242,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateName: 
-  velocity: {x: 0, y: 0, z: 0}
   magnitude: 0
   dummy: 0
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &2551082781891519951
 MonoBehaviour:
   m_ObjectHideFlags: 0
