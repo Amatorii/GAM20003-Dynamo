@@ -446,6 +446,8 @@ MonoBehaviour:
   - {fileID: 650894265}
   radius: 0.25
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
+  segmentList: []
+  segmentLengths: []
   totalLength: 0
 --- !u!64 &100466806
 MeshCollider:
@@ -1193,6 +1195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31fbad3e0083854cb765144133006d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  turningSpeed: 0
+  moveSpeed: 0
+  maxDistanceToChase: 0
   _radius: 20
   _angle: 330
   _delay: 1
@@ -4768,6 +4774,8 @@ MonoBehaviour:
   - {fileID: 1296620267}
   radius: 0.25
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
+  segmentList: []
+  segmentLengths: []
   totalLength: 0
 --- !u!1 &552799392
 GameObject:
@@ -4973,6 +4981,8 @@ MonoBehaviour:
   - {fileID: 198309112}
   radius: 0.25
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
+  segmentList: []
+  segmentLengths: []
   totalLength: 0
 --- !u!64 &665154881
 MeshCollider:
@@ -5546,6 +5556,8 @@ MonoBehaviour:
   - {fileID: 1715532050}
   radius: 0.25
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
+  segmentList: []
+  segmentLengths: []
   totalLength: 0
 --- !u!43 &777443064
 Mesh:
@@ -5782,6 +5794,8 @@ MonoBehaviour:
   - {fileID: 640001024}
   radius: 0.25
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
+  segmentList: []
+  segmentLengths: []
   totalLength: 0
 --- !u!64 &828052098
 MeshCollider:
@@ -6082,6 +6096,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 1535867768}
   - {fileID: 2046792995}
+  weaponIndex: 0
   activeWeapon: 
 --- !u!81 &849605217
 AudioListener:
@@ -8105,6 +8120,8 @@ MonoBehaviour:
   - {fileID: 415130230}
   radius: 0.25
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
+  segmentList: []
+  segmentLengths: []
   totalLength: 0
 --- !u!64 &1361142767
 MeshCollider:
@@ -9511,6 +9528,8 @@ MonoBehaviour:
   - {fileID: 2028836959}
   radius: 0.25
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
+  segmentList: []
+  segmentLengths: []
   totalLength: 0
 --- !u!1 &1697831951
 GameObject:
@@ -9954,7 +9973,7 @@ MonoBehaviour:
   mouseX: 0
   mouseY: 0
   camAngle: 0
-  camera: {fileID: 849605215}
+  cam: {fileID: 849605215}
 --- !u!4 &1809373075
 Transform:
   m_ObjectHideFlags: 0
@@ -10345,6 +10364,8 @@ MonoBehaviour:
   - {fileID: 190524631}
   radius: 0.25
   segmentPrefab: {fileID: 7580181307851952209, guid: 0b3127fbb01e00448bb73047f5ff8b2c, type: 3}
+  segmentList: []
+  segmentLengths: []
   totalLength: 0
 --- !u!64 &2040435100
 MeshCollider:

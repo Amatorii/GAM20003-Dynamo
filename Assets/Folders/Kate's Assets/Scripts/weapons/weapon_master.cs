@@ -11,6 +11,8 @@ public class weapon_master : MonoBehaviour
     public List<GameObject> weapons;
     public int weaponIndex;
 
+    public bool receiveInput = true;
+
     [SerializeField] private string activeWeapon;
     // debug
 
@@ -36,53 +38,58 @@ public class weapon_master : MonoBehaviour
 
     void Update()
     {
-        if (Input.mouseScrollDelta.y > 0)
-        {
-            weaponIndex++;
-            if (weaponIndex == weapons.Count)
-                weaponIndex = 0;
-            wpnActive = weaponFunction[weaponIndex];
-            UpdateViewmodel(weapons[weaponIndex]);
-        }
-        if (Input.mouseScrollDelta.y < 0)
-        {
-            weaponIndex--;
-            if (weaponIndex == -1)
-                weaponIndex = weapons.Count - 1;
-            wpnActive = weaponFunction[weaponIndex];
-            UpdateViewmodel(weapons[weaponIndex]);
-        }
+        if (receiveInput) 
+        { 
+        
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                weaponIndex++;
+                if (weaponIndex == weapons.Count)
+                    weaponIndex = 0;
+                wpnActive = weaponFunction[weaponIndex];
+                UpdateViewmodel(weapons[weaponIndex]);
+            }
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                weaponIndex--;
+                if (weaponIndex == -1)
+                    weaponIndex = weapons.Count - 1;
+                wpnActive = weaponFunction[weaponIndex];
+                UpdateViewmodel(weapons[weaponIndex]);
+            }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            UpdateViewmodel(weapons[0]);
-            wpnActive = wpnFireball;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            UpdateViewmodel(weapons[1]);
-            wpnActive = wpnShotgun;
-        }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                UpdateViewmodel(weapons[0]);
+                wpnActive = wpnFireball;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                UpdateViewmodel(weapons[1]);
+                wpnActive = wpnShotgun;
+            }
 
-        //if (Input.GetButtonDown("Fire3"))
-        //{
-        //    if (wpnActive == wpnFireball)
-        //    {
-        //        wpnActive = wpnShotgun;
-        //        UpdateViewmodel(weapons[1]);
-        //    }
-        //    else
-        //    {
-        //        wpnActive = wpnFireball;
-        //        UpdateViewmodel(weapons[0]);
-        //    }
-        //
-        //    activeWeapon = wpnActive.name;
-        //}
-        // this is a dev feature just so we can try these 2 out
+            //if (Input.GetButtonDown("Fire3"))
+            //{
+            //    if (wpnActive == wpnFireball)
+            //    {
+            //        wpnActive = wpnShotgun;
+            //        UpdateViewmodel(weapons[1]);
+            //    }
+            //    else
+            //    {
+            //        wpnActive = wpnFireball;
+            //        UpdateViewmodel(weapons[0]);
+            //    }
+            //
+            //    activeWeapon = wpnActive.name;
+            //}
+            // this is a dev feature just so we can try these 2 out
 
-        else if (Input.GetButtonDown("Fire1"))
-            wpnActive.fire();
+            else if (Input.GetButtonDown("Fire1"))
+                wpnActive.fire();
+        
+        }
     }
 
     void UpdateViewmodel(GameObject newWeapon)
