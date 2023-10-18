@@ -14,6 +14,25 @@ namespace Hamish.Enemy
         protected CapsuleCollider hitBox;
         protected NavMeshAgent _agent;
 
+        [Header("Stats")]
+        /// <summary>
+        /// Becareful, the ranged enemy applies it's damage for every bullet
+        /// You can change it so the player's script decides how much damage it takes from attacks but atm, the enemies call the player's health script
+        /// </summary>
+        [Range(0, 50)][SerializeField]protected int damage;
+        /// <summary>
+        /// How fast the AI Looks at the player
+        /// </summary>
+        [Range(10, 50)][SerializeField]protected int turningSpeed;
+        [Range(3.5f, 10.0f)][SerializeField]protected float moveSpeed;
+        /// <summary>
+        /// This is mainly for the Ranged Enemy
+        /// To make the AI more deadly, make this bigger, increase the bullet speed and make it's turning speed higher
+        /// The AI is more accurate when standing still
+        /// </summary>
+        [Range(15, 100)][SerializeField] public int maxDistanceToChase;
+
+
         protected virtual void Awake()
         {
             rb = GetComponent<Rigidbody>();
@@ -25,6 +44,8 @@ namespace Hamish.Enemy
             Debug.Log("[" + this + "]: Sucessfully Initialized");
             Debug.Log("[" + this + "]: transform.right = " + transform.right);
             StartStateMachine(new EnemyIdle(this));
+
+            _agent.speed = moveSpeed;
         }
 
         #region StateMachine
@@ -110,10 +131,10 @@ namespace Hamish.Enemy
             else if (_canSeePlayer)
                 _canSeePlayer = false;
         }
-
+/*
         protected void LookAtPlayer()
         {
-            Quaternion lookRotation = Quaternion.LookRotation(playerObject.transform.position - transform.position);
+            Quaternion lookRotation = Quaternion.LookRotation((playerObject.transform.position) - transform.position);
             float time = 0;
             while (time < 1)
             {
@@ -121,7 +142,16 @@ namespace Hamish.Enemy
                 time += Time.deltaTime * 0.5f;
             }
         }
+*/
+        
+        protected void LookAtPlayer()
+        {
+            Vector3 dir = playerObject.transform.position - transform.position;
+            dir.y = 0;
 
+            Quaternion rot = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, turningSpeed * Time.deltaTime);
+        }
         public bool IsEnemyMoving()
         {
             if (_agent.hasPath)

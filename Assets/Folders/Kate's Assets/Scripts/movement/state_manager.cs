@@ -18,8 +18,6 @@ public class state_manager : MonoBehaviour
     [SerializeField] private string stateName;
     // the currently active state
 
-    [SerializeField] private Vector3 velocity;
-
     [SerializeField] private float magnitude;
     // scalar velocity
 
@@ -30,9 +28,11 @@ public class state_manager : MonoBehaviour
     public bool dummy;
     // if enabled, no input
 
+    public Vector3 velocity;
+
     #endregion
 
-#region functions
+    #region functions
 
     public void DetectState() // checks what state the player should be in. returns true if the state has changed
     {
@@ -52,6 +52,9 @@ public class state_manager : MonoBehaviour
     public void Launch(Vector3 launch)
     {
         Debug.Log("[" + name + "] Movement: Changing movement state from " + stateCurrent.name + " to air.");
+
+        if (stateCurrent.name == "rail")
+            stateCurrent.railSkip();
 
         stateCurrent = new move_air(body, launch);
         stateName = stateCurrent.name;

@@ -10,6 +10,9 @@ public class move_ground : player_move
     bool grounded;
     // remembering if the player is grounded (for a weird edge case)
 
+    // variables
+    float coJump = 7.5f;
+
     public move_ground(CharacterController bodyIn) // constructor - missing a bit from original, might cause problems down the line
     {
         name = "ground";
@@ -50,8 +53,8 @@ public class move_ground : player_move
     {
         if (moveInput.inputJump)
         {
-            Vector3 velocity = body.velocity + (Vector3.up * 7.5f);
-            if (velocity[1] < 7.5) velocity[1] = 7.5f;
+            Vector3 velocity = body.velocity + (Vector3.up * coJump);
+            if (velocity[1] < coJump) velocity[1] = coJump;
             // adding force to current velocity with vertical magnitude becoming at least 7.5
 
             return new move_air(body, velocity);

@@ -6,6 +6,8 @@ public class en_projectile_bullet : MonoBehaviour
 {
     private BoxCollider boxCollider;
     private Rigidbody rb;
+    private int damage;
+    private int bulletSpeed;
 
     private void Awake()
     {
@@ -16,7 +18,7 @@ public class en_projectile_bullet : MonoBehaviour
 
     private void Update()
     {
-        rb.AddForce(transform.forward * 100.0f, ForceMode.Force);
+        rb.AddForce(transform.forward * bulletSpeed, ForceMode.Force);
     }
 
     private IEnumerator MoveProjectile()
@@ -27,6 +29,17 @@ public class en_projectile_bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.tag != null && other.CompareTag("Player"))
+            other.GetComponent<ent_health>().Damage(damage);
         Destroy(gameObject);
+    }
+
+    public void SetDamage(int damage)
+    {
+        this.damage = damage;
+    }
+    public void SetSpeed(int speed)
+    {
+        this.bulletSpeed = speed;
     }
 }

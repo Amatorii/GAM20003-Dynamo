@@ -4,54 +4,57 @@ using UnityEngine;
 
 public class wpn_shotgun : weapon_state
 {
-    Transform transform;
-    GameObject hitDecal;
-
     int surfaceLayer;
     int damageLayer;
 
-    public wpn_shotgun(Transform transIn, GameObject objIn)
+    public state_manager body;
+
+    public float range; // maximum distance shotgun will check for enemies
+
+    public float knockback; // knockback coefficient
+
+    public int spread; // shotgun spread angle
+
+    public int damageBase; // base damage applied before scaling damage is considered
+    public int damage; // additional scaling damage that is added on top of base damage
+
+    void Awake()
     {
-        name = "shotgun";
-
-        transform = transIn;
-
-        hitDecal = objIn; // explosion
-
-        surfaceLayer = LayerMask.GetMask("World");
+        surfaceLayer = LayerMask.GetMask("World", "Enemy");
         damageLayer = LayerMask.GetMask("Enemy");
     }
 
     public override void fire()
     {
-        //seeing how far before shotgun hits a wall
+        // instantiating effect
+        if (projectile != null)
+            Object.Instantiate(projectile, transform.position + transform.forward * 0.5f, transform.rotation);
+
+        // seeing how far before shotgun hits a wall
         RaycastHit rHit;
         float max;
 
-        if (Physics.Raycast(transform.position, transform.forward, out rHit, 5, surfaceLayer))
+        if (Physics.Raycast(transform.position, transform.forward, out rHit, range, surfaceLayer))
             max = rHit.distance;
         else
-            max = 5;
+            max = range;
 
-        //GameObject.Instantiate(hitDecal, transform.position + transform.forward, transform.rotation);
         Debug.Log("[" + name + "] Shotgun: Firing shot with range " + max + ".");
 
-        //getting the actual enemy hits
+        // getting the actual enemy hits
         Collider[] hits = Physics.OverlapSphere(transform.position, max, damageLayer);
 
         foreach (Collider hit in hits)
         {
-            Vector3 offset = hit.transform.position - transform.position; //relative position of contact
-            offset = Vector3.ClampMagnitude(offset, 5); //needed for proximity calculations
-            float proximity = 1 - (offset.magnitude / 5); //multiplier for distance from shotgun
+            Vector3 offset = hit.transform.position - transform.position; // relative position of contact
+            offset = Vector3.ClampMagnitude(offset, range); // needed for proximity calculations
+            float proximity = 1 - (offset.magnitude / range); // multiplier for distance from shotgun
 
-            if (Vector3.Angle(transform.forward, offset.normalized) <= 30) //if contact is within the angle of spread
+            if (Vector3.Angle(transform.forward, offset.normalized) <= spread) // if contact is within the angle of spread
             {
                 Debug.Log("[" + name + "] Shotgun: Found contact at relative position" + offset + ".");
-                GameObject decal = GameObject.Instantiate(hitDecal, transform.position, transform.rotation);
-                decal.GetComponent<RenderHit>().HitLine(transform.position, hit.transform.position);
 
-                hit.gameObject.GetComponent<ent_health>().DamageShotgun(offset, proximity, 75, 25, 20);
+                hit.gameObject.GetComponent<ent_health>().DamageShotgun(offset, proximity, damage, damageBase, knockback);
                 // damage, damage floor, knockback
             }
         }

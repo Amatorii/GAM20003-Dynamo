@@ -46,7 +46,7 @@ public class rail_segment : MonoBehaviour
 
         volume.direction = 2; //points forward
         volume.height = length + (radius * 2);
-
+        volume.radius = radius;
         volume.center = Vector3.forward * (length / 2);
     }
 
