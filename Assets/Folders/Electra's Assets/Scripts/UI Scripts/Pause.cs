@@ -40,7 +40,6 @@ public class Pause : MonoBehaviour
         gameplayUI.SetActive(false);
         pauseUI.SetActive(true);
         paused = true;
-
     }
 
     public void UnpauseGame()
@@ -50,8 +49,8 @@ public class Pause : MonoBehaviour
         gameplayUI.SetActive(true);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        weaponMaster.receiveInput = true;
-        playerLook.receiveInput = true;
         paused = false;
+        playerLook.receiveInput = true;
+        weaponMaster.receiveInput = true;
     }
 }

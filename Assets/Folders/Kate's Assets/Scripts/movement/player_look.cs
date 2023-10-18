@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class player_look : MonoBehaviour
 {
@@ -41,5 +42,10 @@ public class player_look : MonoBehaviour
 
             Debug.DrawRay(cam.position, cam.forward, Color.blue);
         }
+    }
+
+    public void ChangeSensitivity(Slider slider) //takes value from pause menu sensitivity slider
+    {
+        sensitivity = slider.value;
     }
 }
