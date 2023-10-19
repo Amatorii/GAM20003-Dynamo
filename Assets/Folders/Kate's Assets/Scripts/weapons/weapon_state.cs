@@ -13,5 +13,7 @@ public abstract class weapon_state : MonoBehaviour
 
     public GameObject model; // weapon viewmodel
 
+    public GameObject crosshair; // weapon crosshair
+
     public abstract void fire();
 }

@@ -4974,6 +4974,10 @@ PrefabInstance:
       propertyPath: model
       value: 
       objectReference: {fileID: 1517834819}
+    - target: {fileID: 6933342305121499622, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 2050561220}
     - target: {fileID: 7574733409927538120, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
       propertyPath: m_Name
       value: test_player_movement (1)
@@ -4982,6 +4986,10 @@ PrefabInstance:
       propertyPath: model
       value: 
       objectReference: {fileID: 1581690932}
+    - target: {fileID: 8918156496795123239, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 33004227}
     - target: {fileID: 8918156496795123239, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
       propertyPath: projectile
       value: 

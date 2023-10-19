@@ -72,10 +72,15 @@ public class weapon_master : MonoBehaviour
         // enables the correct viewmodel and disables all others
         if (wpnList[wpnActive].model != null)
             wpnList[wpnActive].model.SetActive(false);
-        
+
+        if (wpnList[wpnActive].crosshair != null)
+            wpnList[wpnActive].crosshair.SetActive(false);
+
         if (wpnList[wpnNew].model != null)
             wpnList[wpnNew].model.SetActive(true);
 
+        if (wpnList[wpnNew].crosshair != null)
+            wpnList[wpnNew].crosshair.SetActive(true);
 
         cooldown = wpnList[wpnNew].fireRate;
 
