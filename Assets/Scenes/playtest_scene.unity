@@ -1326,6 +1326,7 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 128
+  ShowCurrentState: 
 --- !u!114 &300245818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6600,13 +6601,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3549182289485512725, guid: 4d7bbd0940b2c2742a776f3b02e215e6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549182289485512725, guid: 4d7bbd0940b2c2742a776f3b02e215e6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4838866723930439012, guid: 4d7bbd0940b2c2742a776f3b02e215e6, type: 3}
       propertyPath: m_Name
       value: ent_enemy_melee
-      objectReference: {fileID: 0}
-    - target: {fileID: 8123811478285822327, guid: 4d7bbd0940b2c2742a776f3b02e215e6, type: 3}
-      propertyPath: health
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

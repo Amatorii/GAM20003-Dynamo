@@ -13,6 +13,7 @@ namespace Hamish.Enemy
         protected Rigidbody rb;
         protected CapsuleCollider hitBox;
         protected NavMeshAgent _agent;
+        protected Animator animator;
 
         [Header("Stats")]
         /// <summary>
@@ -32,6 +33,7 @@ namespace Hamish.Enemy
         /// </summary>
         [Range(0, 100)][SerializeField] public int maxDistanceToChase;
 
+        protected ent_health healthScript;
 
         protected virtual void Awake()
         {
@@ -39,13 +41,13 @@ namespace Hamish.Enemy
             hitBox = GetComponent<CapsuleCollider>();
             _agent = GetComponent<NavMeshAgent>();
             playerObject = GameObject.FindGameObjectWithTag("Player");
-
+            animator = GetComponentInChildren<Animator>();
             StartCoroutine(FOVRoutine());
-            Debug.Log("[" + this + "]: Sucessfully Initialized");
-            Debug.Log("[" + this + "]: transform.right = " + transform.right);
             StartStateMachine(new EnemyIdle(this));
 
             _agent.speed = moveSpeed;
+
+            healthScript = GetComponent<ent_health>();
         }
 
         #region StateMachine
@@ -169,6 +171,27 @@ namespace Hamish.Enemy
             {
                 StopAgent();
             }
+        }
+
+        protected void Death()
+        {
+            currentState = new EnemyDeath(this);
+            _agent.speed = 0;
+            //StopAllCoroutines();
+            animator.SetBool("IsDead", true);
+            StartCoroutine(FinalCountDown());
+        }
+
+        private IEnumerator FinalCountDown()
+        {
+            yield return new WaitForSeconds(5);
+            Debug.Log("[" + this.name + "] destroying self");
+            Destroy(this.gameObject);
+        }
+
+        public void SetAnimationState(int state)
+        {
+            animator.SetInteger("CurrentState", state);
         }
     }
 }

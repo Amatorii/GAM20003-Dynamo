@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1916108119513994767}
   - component: {fileID: 4134825791825908218}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: MeleeHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   turningSpeed: 25
-  moveSpeed: 7
+  moveSpeed: 6
   maxDistanceToChase: 15
   _radius: 20
   _angle: 330
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e27f3af0e080e4c8320157c729e263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 100
   immortal: 0
 --- !u!136 &3549182289485512725
 CapsuleCollider:
@@ -167,10 +167,10 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 10
   avoidancePriority: 50
-  m_AngularSpeed: 200
-  m_StoppingDistance: 1
+  m_AngularSpeed: 500
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

@@ -21,6 +21,11 @@ namespace Hamish.Enemy
 
         private void Update()
         {
+            if (healthScript.health <= 0)
+            {
+                Death();
+                return;
+            }
             RunStateMachine();
         }
         

@@ -12,6 +12,7 @@ namespace Hamish.Enemy
 
         public override EnemyState RunState()
         {
+            enemyClass.SetAnimationState(3);
             distanceToPlayer = Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position);
             EnemyState stateToReturn = enemyClass.AttackPlayer();
 

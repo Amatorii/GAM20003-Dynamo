@@ -12,6 +12,7 @@ namespace Hamish.Enemy
 
         public override EnemyState RunState()
         {
+            enemyClass.SetAnimationState(1);
             distanceToPlayer = Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position);
 
             if (enemyClass is RangedEnemy && distanceToPlayer < 10.0f)

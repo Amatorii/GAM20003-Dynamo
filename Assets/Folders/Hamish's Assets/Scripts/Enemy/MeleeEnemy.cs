@@ -21,6 +21,12 @@ namespace Hamish.Enemy
         // Update is called once per frame
         private void Update()
         {
+            if(healthScript.health <= 0)
+            {
+                Death();
+                return;
+            }
+
             RunStateMachine();
             ShowCurrentState = currentState.ToString();
 
@@ -33,7 +39,6 @@ namespace Hamish.Enemy
             }
             else
                 _agent.speed = distanceToPlayer * 1.5f;
-            Debug.Log("Distance to player= "+distanceToPlayer);
         }
 
         public override EnemyState AttackPlayer()
@@ -49,8 +54,10 @@ namespace Hamish.Enemy
 
         private IEnumerator MeleeAttack()
         {
+            animator.SetInteger("CurrentState", 3);
             if(canAttackPlayer)
             {
+                animator.Play("Punching");
                 ent_health playerScript = playerObject.GetComponent<ent_health>();
                 playerScript.Damage(damage);
                 yield return new WaitForSeconds(1);
