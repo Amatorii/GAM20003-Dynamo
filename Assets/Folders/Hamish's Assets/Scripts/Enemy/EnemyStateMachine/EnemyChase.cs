@@ -18,10 +18,13 @@ namespace Hamish.Enemy
                 return new EnemyAttack(enemyClass);
             if(enemyClass is RangedEnemy && distanceToPlayer < 5.0f)
                 return new EnemyMove(enemyClass);
-
             enemyClass.MoveToPlayer();
-            if(enemyClass is MeleeEnemy && distanceToPlayer <= 2)
+
+
+            if (enemyClass is MeleeEnemy && distanceToPlayer <= 3)
+            {
                 return new EnemyAttack(enemyClass);
+            }
             return this;
         }
     }

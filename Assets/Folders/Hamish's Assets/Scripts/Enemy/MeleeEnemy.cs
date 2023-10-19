@@ -8,27 +8,41 @@ namespace Hamish.Enemy
 {
     public class MeleeEnemy : Enemy
     {
+        public string ShowCurrentState;
         private BoxCollider attackHitBox;
         private bool canAttackPlayer;
         protected override void Awake()
         {
             base.Awake();
             attackHitBox = GetComponentInChildren<BoxCollider>();
+            _agent.stoppingDistance = 3;
         }
 
         // Update is called once per frame
         private void Update()
         {
             RunStateMachine();
+            ShowCurrentState = currentState.ToString();
+
+            float distanceToPlayer = Vector3.Distance(playerObject.transform.position, transform.position);
+            if (distanceToPlayer < 2)
+                _agent.speed = 1;
+            else if (distanceToPlayer < 5)
+            {
+                _agent.speed = distanceToPlayer / 1.2f;
+            }
+            else
+                _agent.speed = distanceToPlayer * 1.5f;
+            Debug.Log("Distance to player= "+distanceToPlayer);
         }
 
         public override EnemyState AttackPlayer()
         {
+            LookAtPlayer();
             if (!isAttacking)
             {
                 StartCoroutine(MeleeAttack());
                 isAttacking = true;
-                Debug.Log("I'm trying to attack the player");
             }
             return currentState;
         }
@@ -39,7 +53,6 @@ namespace Hamish.Enemy
             {
                 ent_health playerScript = playerObject.GetComponent<ent_health>();
                 playerScript.Damage(damage);
-                Debug.Log("I've attacked the player");
                 yield return new WaitForSeconds(1);
             }
             isAttacking = false;

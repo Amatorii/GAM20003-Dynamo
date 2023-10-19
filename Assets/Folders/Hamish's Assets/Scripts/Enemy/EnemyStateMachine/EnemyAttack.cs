@@ -24,7 +24,7 @@ namespace Hamish.Enemy
             }
             if(enemyClass is MeleeEnemy)
             {
-                enemyClass.MoveToPlayer();
+                //enemyClass.MoveToPlayer();
                 if(distanceToPlayer > 3)
                     return new EnemyChase(enemyClass);
             }

@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEditor;
 using Hamish.Enemy;
 
-[CustomEditor(typeof(RangedEnemy))]
+[CustomEditor(typeof(MeleeEnemy))]
 public class FOVEditorScript : Editor
 {
     private void OnSceneGUI()
     {
-        RangedEnemy fov = (RangedEnemy)target;
+        MeleeEnemy fov = (MeleeEnemy)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov._radius);
 

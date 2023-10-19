@@ -30,7 +30,7 @@ namespace Hamish.Enemy
         /// To make the AI more deadly, make this bigger, increase the bullet speed and make it's turning speed higher
         /// The AI is more accurate when standing still
         /// </summary>
-        [Range(15, 100)][SerializeField] public int maxDistanceToChase;
+        [Range(0, 100)][SerializeField] public int maxDistanceToChase;
 
 
         protected virtual void Awake()
@@ -89,6 +89,7 @@ namespace Hamish.Enemy
         public void MoveToPlayer()
         {
             _agent.SetDestination(playerObject.transform.position);
+            StoppingDistanceFix();
         }
 
         public void Strafe()
@@ -103,7 +104,7 @@ namespace Hamish.Enemy
 
         public void StopAgent()
         {
-            _agent.SetDestination(transform.position);
+            _agent.isStopped = true;
         }
 
         public abstract EnemyState AttackPlayer();
@@ -158,6 +159,16 @@ namespace Hamish.Enemy
                 return true;
             else
                 return false;
+        }
+
+        protected void StoppingDistanceFix()
+        {
+            bool bDistance = _agent.remainingDistance > _agent.stoppingDistance;
+            _agent.isStopped = false;
+            if (!bDistance)
+            {
+                StopAgent();
+            }
         }
     }
 }

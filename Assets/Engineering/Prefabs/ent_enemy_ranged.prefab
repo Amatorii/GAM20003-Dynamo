@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4700682144918267377}
   - component: {fileID: 3997484075627732858}
+  - component: {fileID: 6680724655661542141}
   - component: {fileID: 6907417285042391538}
   - component: {fileID: 1855336839631293763}
   m_Layer: 7
@@ -79,9 +80,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d70f211f43f78304e94e617ee97e124d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 10
+  turningSpeed: 30
   moveSpeed: 3.5
-  _radius: 20
+  maxDistanceToChase: 40
+  _radius: 50
   _angle: 330
   _delay: 1
   _canSeePlayer: 0
@@ -98,7 +101,22 @@ MonoBehaviour:
   bullet: {fileID: 7270200737185115725, guid: a2d4649f7b563434d8aa51e53097997a, type: 3}
   gunNozzle: {fileID: 787710947497046339}
   rpm: 600
-  burstAmount: 3
+  burstAmount: 5
+  bulletSpeed: 400
+--- !u!114 &6680724655661542141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500173609537393512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e27f3af0e080e4c8320157c729e263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  immortal: 0
 --- !u!136 &6907417285042391538
 CapsuleCollider:
   m_ObjectHideFlags: 0
