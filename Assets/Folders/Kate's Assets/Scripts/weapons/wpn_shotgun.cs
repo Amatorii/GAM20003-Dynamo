@@ -13,6 +13,8 @@ public class wpn_shotgun : weapon_state
 
     public float knockback; // knockback coefficient
 
+    public float knockbackPlayer; // for player pushback
+
     public int spread; // shotgun spread angle
 
     public int damageBase; // base damage applied before scaling damage is considered
@@ -58,5 +60,20 @@ public class wpn_shotgun : weapon_state
                 // damage, damage floor, knockback
             }
         }
+
+        // launching player
+        Vector3 launch = transform.forward;
+
+        Vector3 vIn = body.velocity;
+        if (vIn[1] < 0)
+            vIn[1] = 0;
+
+        // dot product coefficient - so the gun doesn't stop the player in their tracks
+        if (body.velocity.magnitude > 0)
+            launch *= knockbackPlayer - knockbackPlayer * Mathf.Clamp01(Vector3.Dot(launch, vIn.normalized));
+
+        launch *= -1;
+
+        body.Launch(vIn + launch);
     }
 }
