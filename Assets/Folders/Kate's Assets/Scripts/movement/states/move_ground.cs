@@ -51,7 +51,7 @@ public class move_ground : player_move
 
     public override player_move CheckState() // used to see if the player should enter a new movement state
     {
-        if (moveInput.inputJump)
+        if (moveInput.inputJumpHold)
         {
             Vector3 velocity = body.velocity + (Vector3.up * coJump);
             if (velocity[1] < coJump) velocity[1] = coJump;
