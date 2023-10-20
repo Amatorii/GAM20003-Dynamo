@@ -6301,6 +6301,7 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 128
+  ShowCurrentState: 
 --- !u!4 &895169633
 Transform:
   m_ObjectHideFlags: 0
@@ -9434,25 +9435,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shotgun
       objectReference: {fileID: 0}
-    - target: {fileID: 6270712116580647862, guid: 49d18b1325cb39244a41434127d03486, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6651213974970259724, guid: 49d18b1325cb39244a41434127d03486, type: 3}
       propertyPath: m_RootOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6651213974970259724, guid: 49d18b1325cb39244a41434127d03486, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.3588
-      objectReference: {fileID: 0}
-    - target: {fileID: 6651213974970259724, guid: 49d18b1325cb39244a41434127d03486, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.3588
-      objectReference: {fileID: 0}
-    - target: {fileID: 6651213974970259724, guid: 49d18b1325cb39244a41434127d03486, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.3588
       objectReference: {fileID: 0}
     - target: {fileID: 6651213974970259724, guid: 49d18b1325cb39244a41434127d03486, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9717,25 +9702,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket Launcher
       objectReference: {fileID: 0}
-    - target: {fileID: 2679395545194521808, guid: b6fd64a47ced4ff4dad613fac66d02bf, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7402930412507821575, guid: b6fd64a47ced4ff4dad613fac66d02bf, type: 3}
       propertyPath: m_RootOrder
       value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402930412507821575, guid: b6fd64a47ced4ff4dad613fac66d02bf, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10.489882
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402930412507821575, guid: b6fd64a47ced4ff4dad613fac66d02bf, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 10.489882
-      objectReference: {fileID: 0}
-    - target: {fileID: 7402930412507821575, guid: b6fd64a47ced4ff4dad613fac66d02bf, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 10.489882
       objectReference: {fileID: 0}
     - target: {fileID: 7402930412507821575, guid: b6fd64a47ced4ff4dad613fac66d02bf, type: 3}
       propertyPath: m_LocalPosition.x
