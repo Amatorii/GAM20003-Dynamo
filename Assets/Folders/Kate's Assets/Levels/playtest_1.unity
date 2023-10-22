@@ -4046,10 +4046,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6933342305121499622, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
-      propertyPath: knockbackPlayer
-      value: 7.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7574733409927538120, guid: e680d89d6308e6446ad1d878b8eacef1, type: 3}
       propertyPath: m_Name
       value: test_player_movement
