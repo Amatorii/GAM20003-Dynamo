@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1916108119513994767}
   - component: {fileID: 4134825791825908218}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeleeHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ Transform:
   - {fileID: 616612204247642325}
   - {fileID: 1916108119513994767}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4324092945741127332
 MonoBehaviour:
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8e27f3af0e080e4c8320157c729e263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 500
   immortal: 0
 --- !u!136 &3549182289485512725
 CapsuleCollider:
