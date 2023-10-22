@@ -12,7 +12,7 @@ namespace Hamish.Enemy
 
         public override EnemyState RunState()
         {
-            enemyClass.SetAnimationState(5);
+            enemyClass.SetAnimationState(4);
             return this;
         }
     }
