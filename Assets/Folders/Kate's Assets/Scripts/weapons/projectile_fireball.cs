@@ -39,7 +39,10 @@ public class projectile_fireball : MonoBehaviour
     {
         RaycastHit contact;
         if (Physics.SphereCast(transform.position, width, transform.forward, out contact, speed * Time.deltaTime, contactLayermask))
+        {
+            Debug.LogWarning("Contacted With: " + contact.collider.name);
             Explosion(contact); //if something is hit by the projectile, do an explosion
+        }
 
         else
             transform.position += transform.forward * speed * Time.deltaTime; //if nothing is hit, move forward
@@ -50,25 +53,27 @@ public class projectile_fireball : MonoBehaviour
         Debug.Log("[" + name + "] Fireball: Impact at position " + contact.point + ".");
 
         Collider[] hits = Physics.OverlapSphere(contact.point, radius, explosionLayermask); //actual explosion
-        foreach (Collider hit in hits)
+        Debug.LogWarning("Hits.length = "+ hits.Length);
+        Debug.LogWarning("Hits = "+ hits);
+        for (int i = 0; i < hits.Length; i++)
         {
-            Vector3 offset = hit.ClosestPoint(contact.point) - contact.point; //relative position of contact
+            Vector3 offset = hits[i].ClosestPoint(contact.point) - contact.point; //relative position of contact
             float proximity = 1 - (offset.magnitude / radius); //multiplier for distance from explosion
 
             
 
-            if (hit.tag == "Player") //if player is hit
+            if (hits[i].tag == "Player") //if player is hit
             {
-                Debug.Log("[" + name + "] Explosion: Player contact at relative position " + offset + ". Entity name " + hit.name + ".");
+                Debug.Log("[" + name + "] Explosion: Player contact at relative position " + offset + ". Entity name " + hits[i].name + ".");
 
-                hit.gameObject.GetComponent<ent_health>().DamageExplosion(offset, proximity, playerDamage, playerDamageFloor, playerKnockback);
+                hits[i].gameObject.GetComponent<ent_health>().DamageExplosion(offset, proximity, playerDamage, playerDamageFloor, playerKnockback);
             }
 
-            else //if non-player is hit (should only be those on enemy layer)
+            else if (hits[i].CompareTag("Enemy"))//if non-player is hit (should only be those on enemy layer)
             {
-                Debug.Log("[" + name + "] Explosion: Non-player contact at relative position " + offset + ". Entity name " + hit.name + ".");
+                Debug.Log("[" + name + "] Explosion: Non-player contact at relative position " + offset + ". Entity name " + hits[i].name + ".");
 
-                hit.gameObject.GetComponent<ent_health>().DamageExplosion(offset, proximity, enemyDamage, enemyDamageFloor, enemyKnockback);
+                hits[i].gameObject.GetComponent<ent_health>().DamageExplosion(offset, proximity, enemyDamage, enemyDamageFloor, enemyKnockback);
             }
         }
 

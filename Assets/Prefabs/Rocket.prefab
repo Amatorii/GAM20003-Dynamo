@@ -51,6 +51,7 @@ MonoBehaviour:
   contactLayers:
   - World
   - Enemy
+  - Default
   radius: 10
   explosionEffect: {fileID: 150257956015327998, guid: c9a1249e6723afd42a17078f932a2165, type: 3}
   enemyDamage: 75
