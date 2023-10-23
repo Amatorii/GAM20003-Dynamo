@@ -52,7 +52,10 @@ public class ent_health : MonoBehaviour
             Vector3 launch = offset.normalized * knockback * proximity;
 
             Debug.Log("[" + name + "] Explosion Damage: Received knockback force of " + launch + ".");
-            body.Launch(body.velocity + launch);
+            if (body != null)
+            {
+                body.Launch(body.velocity + launch);
+            }
         }
     }
 
