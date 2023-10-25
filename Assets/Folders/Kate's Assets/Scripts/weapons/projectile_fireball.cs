@@ -53,14 +53,10 @@ public class projectile_fireball : MonoBehaviour
         Debug.Log("[" + name + "] Fireball: Impact at position " + contact.point + ".");
 
         Collider[] hits = Physics.OverlapSphere(contact.point, radius, explosionLayermask); //actual explosion
-        Debug.LogWarning("Hits.length = "+ hits.Length);
-        Debug.LogWarning("Hits = "+ hits);
         for (int i = 0; i < hits.Length; i++)
         {
             Vector3 offset = hits[i].ClosestPoint(contact.point) - contact.point; //relative position of contact
-            float proximity = 1 - (offset.magnitude / radius); //multiplier for distance from explosion
-
-            
+            float proximity = 1 - (offset.magnitude / radius); //multiplier for distance from explosion         
 
             if (hits[i].tag == "Player") //if player is hit
             {
