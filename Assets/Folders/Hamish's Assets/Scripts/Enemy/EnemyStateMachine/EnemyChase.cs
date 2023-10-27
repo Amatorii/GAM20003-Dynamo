@@ -15,7 +15,7 @@ namespace Hamish.Enemy
             enemyClass.SetAnimationState(1);
             distanceToPlayer = Vector3.Distance(enemyClass.playerObject.transform.position, enemyClass.transform.position);
 
-            if (enemyClass is RangedEnemy && distanceToPlayer < 10.0f)
+            if (enemyClass is RangedEnemy && distanceToPlayer < 40.0f)
                 return new EnemyAttack(enemyClass);
             if(enemyClass is RangedEnemy && distanceToPlayer < 5.0f)
                 return new EnemyMove(enemyClass);

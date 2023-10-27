@@ -18,7 +18,7 @@ public class en_projectile_bullet : MonoBehaviour
 
     private void Update()
     {
-        rb.AddForce(transform.forward * bulletSpeed, ForceMode.Force);
+        transform.position += transform.forward * bulletSpeed * Time.deltaTime;
     }
 
     private IEnumerator MoveProjectile()

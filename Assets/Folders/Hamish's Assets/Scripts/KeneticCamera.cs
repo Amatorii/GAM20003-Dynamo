@@ -7,7 +7,7 @@ namespace Hamish.player
 {
     public class KeneticCamera : MonoBehaviour
     {
-        [Range(0, 1)][SerializeField]private float smoothTime = 0.25f;
+        [Range(0, 25)][SerializeField]private float smoothTime;
         private Vector3 velocity = Vector3.zero;
         [SerializeField] private Transform target;
         private Vector3 lastPosition;
@@ -21,6 +21,7 @@ namespace Hamish.player
         void Update()
         {
             transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, smoothTime);
+            //transform.position = Vector3.Lerp(transform.position, target.position, smoothTime*Time.deltaTime);
             lastPosition = target.position;
         }
     }
