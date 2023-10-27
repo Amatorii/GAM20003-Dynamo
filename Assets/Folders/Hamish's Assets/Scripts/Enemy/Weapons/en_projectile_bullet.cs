@@ -34,12 +34,6 @@ public class en_projectile_bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetDamage(int damage)
-    {
-        this.damage = damage;
-    }
-    public void SetSpeed(int speed)
-    {
-        this.bulletSpeed = speed;
-    }
+    public void SetDamage(int damage) { this.damage = damage; }
+    public void SetSpeed(int speed) { this.bulletSpeed = speed; }
 }
