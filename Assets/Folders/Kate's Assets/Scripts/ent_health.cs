@@ -12,9 +12,12 @@ public class ent_health : MonoBehaviour
 
     state_manager body;
 
+    Rigidbody rb;
+
     void Awake()
     {
         body = GetComponent<state_manager>();
+        rb = GetComponent<Rigidbody>();
     }
 
     //H: I've made this public so the enemies can call it
@@ -53,8 +56,11 @@ public class ent_health : MonoBehaviour
 
             Debug.Log("[" + name + "] Explosion Damage: Received knockback force of " + launch + ".");
             if (body != null)
-            {
                 body.Launch(body.velocity + launch);
+            else if (rb != null)
+            {
+                rb.AddForce(launch, ForceMode.Impulse);
+                Debug.LogWarning($"[{name}] has been launched");
             }
         }
     }

@@ -178,6 +178,7 @@ namespace Hamish.Enemy
             currentState = new EnemyDeath(this);
             _agent.speed = 0;
             //StopAllCoroutines();
+            animator.StopPlayback();
             animator.SetBool("IsDead", true);
             StartCoroutine(FinalCountDown());
         }

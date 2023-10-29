@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6680724655661542141}
   - component: {fileID: 6907417285042391538}
   - component: {fileID: 1855336839631293763}
+  - component: {fileID: 4979507254346861811}
   m_Layer: 7
   m_Name: ent_enemy_ranged
   m_TagString: Enemy
@@ -66,7 +67,7 @@ Transform:
   - {fileID: 787710947497046339}
   - {fileID: 671659320243777442}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3997484075627732858
 MonoBehaviour:
@@ -163,6 +164,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &4979507254346861811
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500173609537393512}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 5
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1069763149496354889
 PrefabInstance:
   m_ObjectHideFlags: 0
