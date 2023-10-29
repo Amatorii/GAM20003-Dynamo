@@ -26,11 +26,14 @@ namespace Hamish.Enemy
             }
             RunStateMachine();
         }
-        
+
+        public bool handicap;
+
         public override EnemyState AttackPlayer()
         {
             LookAtPlayer();
             AimAtPlayer();
+
             RaycastHit _hit;
             bool _isAimed = false;
 
@@ -39,7 +42,7 @@ namespace Hamish.Enemy
             if (_hit.collider != null)
                 _isAimed = _hit.collider.CompareTag("Player");
 
-            if (currentlyShooting && _isAimed)
+            if (currentlyShooting/* && _isAimed*/)
             {
                 StartCoroutine(ShootGun(burstAmount));
                 currentlyShooting = false;
@@ -50,13 +53,25 @@ namespace Hamish.Enemy
 
         private void AimAtPlayer()
         {
-                Debug.Log("Aiming");
-                Vector3 dir = playerObject.transform.position - gunNozzle.position;
-                //dir.x = 0;
+            Vector3 target = PredictedPosition();
 
-                Quaternion rot = Quaternion.LookRotation(dir);
-                gunNozzle.rotation = Quaternion.Lerp(gunNozzle.rotation, rot, turningSpeed * 2f * Time.deltaTime);
+            Vector3 dir = target - gunNozzle.position;
+            //dir.x = 0;
 
+            Quaternion rot = Quaternion.LookRotation(dir);
+            gunNozzle.rotation = Quaternion.Lerp(gunNozzle.rotation, rot, turningSpeed * 2f * Time.deltaTime);
+
+        }
+
+        private Vector3 PredictedPosition()
+        {
+            float c = 5;
+            if (handicap)
+                c = Random.Range(c - 1, c + 1);
+            Vector3 predictedPosition = playerObject.transform.position + playerObject.GetComponent<state_manager>().velocity/5;
+            Debug.DrawLine(transform.position, predictedPosition, Color.magenta);
+
+            return predictedPosition;
         }
 
         private void OnDrawGizmos()
@@ -86,8 +101,9 @@ namespace Hamish.Enemy
             while (0 != _noBullets)
             {
                 GameObject _bullet = GameObject.Instantiate(bullet, gunNozzle.position + gunNozzle.forward, gunNozzle.rotation);
-                _bullet.GetComponent<en_projectile_bullet>().SetDamage(damage);
+                _bullet.GetComponent<en_projectile_bullet>().SetDamage((int)Random.Range(damage/2f, damage*2f));
                 _bullet.GetComponent<en_projectile_bullet>().SetSpeed(bulletSpeed);
+                _bullet.GetComponent<Rigidbody>().AddForce(gunNozzle.forward * bulletSpeed, ForceMode.Impulse);
                 yield return new WaitForSeconds(60 / rpm);
                 _noBullets--;
             }

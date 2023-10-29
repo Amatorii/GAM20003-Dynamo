@@ -16,9 +16,9 @@ public class en_projectile_bullet : MonoBehaviour
         StartCoroutine(MoveProjectile());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.position += transform.forward * bulletSpeed * Time.deltaTime;
+
     }
 
     private IEnumerator MoveProjectile()
@@ -31,6 +31,11 @@ public class en_projectile_bullet : MonoBehaviour
     {
         if(other.tag != null && other.CompareTag("Player"))
             other.GetComponent<ent_health>().Damage(damage);
+        Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
         Destroy(gameObject);
     }
 

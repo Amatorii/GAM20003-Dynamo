@@ -28,13 +28,17 @@ namespace Hamish
             playerObject = GameObject.FindWithTag("Player");
             if (playerObject == null)
             {
-                Debug.LogWarning("[" + this.name + "] Could not find object with the Player tag");
+                Debug.LogWarning($"[{name}] Could not find object with the Player tag");
                 return;
+            }
+            else
+            {
+                Debug.LogWarning($"[{name}] Player's referance is: {playerObject.name}");
             }
 
             playerHealth = playerObject.GetComponent<ent_health>();
             if (playerHealth == null)
-                Debug.LogWarning("[" + this.name + "] PlayerObject doesn't have a health script attatched");
+                Debug.LogWarning($"[{name}] PlayerObject doesn't have a health script attatched");
             else
             {
                 startingHealth = playerHealth.health;
@@ -64,11 +68,11 @@ namespace Hamish
                 StopCoroutine(EmojiBlink());
             }
         }
-
+        public float H, S, V;
         private void ColourChange()
         {
             Color healthColour = Color.Lerp(Color.red, Color.green, curHealth / 75);
-            Color imageColour = Color.Lerp(Color.red, Color.white, curHealth / 50);
+            Color imageColour = Color.Lerp(Color.red, Color.HSVToRGB(H, S, V), curHealth / 50);
 
             healthNumber.color = healthColour;
 

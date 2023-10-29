@@ -189,9 +189,6 @@ namespace Hamish.Enemy
             Destroy(this.gameObject);
         }
 
-        public void SetAnimationState(int state)
-        {
-            animator.SetInteger("CurrentState", state);
-        }
+        public void SetAnimationState(int state) { animator.SetInteger("CurrentState", state); }
     }
 }
