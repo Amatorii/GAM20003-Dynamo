@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class state_manager : MonoBehaviour
 {
@@ -64,10 +66,14 @@ public class state_manager : MonoBehaviour
 
 #region events
 
+    private Animator animator;
+
     void Awake()
     {
+        EventManager.PlayerHasDied += Death;
         body = GetComponent<CharacterController>();
-
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -75,8 +81,22 @@ public class state_manager : MonoBehaviour
         stateName = stateCurrent.name;
     }
 
+    private void Death()
+    {
+        if (!animator.enabled)
+        {
+            animator.enabled = true;
+            animator.Play("Death");
+        }
+    }
+
     void Update()
     {
+        if(GetComponent<ent_health>().health <= 0)
+        {
+            EventManager.PlayerIsDead();
+            return;
+        }
         if (!dummy) stateCurrent.CheckInput();
 
         DetectState();

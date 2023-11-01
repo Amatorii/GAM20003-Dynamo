@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,9 @@ namespace Hamish
         [SerializeField] private TextMeshProUGUI healthNumber;
         [SerializeField] private TextMeshProUGUI[] txtEyes;
         [SerializeField] private TextMeshProUGUI[] txtMouth;
+        [SerializeField] private UnityEngine.UI.Image deathImage;
+        [SerializeField] private GameObject gameOver;
+        [SerializeField] private GameObject gameWon;
         private float startingHealth;
         private float curHealth;
 
@@ -25,6 +29,8 @@ namespace Hamish
 
         void Start()
         {
+            EventManager.PlayerHasDied += DeathVoid;
+            deathImage.enabled = false;
             playerObject = GameObject.FindWithTag("Player");
             if (playerObject == null)
             {
@@ -48,6 +54,21 @@ namespace Hamish
             StartCoroutine(EmojiBlink());
         }
 
+        private void DeathVoid()
+        {
+            deathImage.enabled = true;
+            StartCoroutine(CountDown(1));
+        }
+
+        private IEnumerator CountDown(int i)
+        {
+            yield return new WaitForSeconds(5);
+            if (i == 1)
+                gameOver.SetActive(true);
+            else if (i ==2)
+                gameWon.SetActive(true);
+        }
+
         void Update()
         {
             float targetHealth = (playerHealth.health / startingHealth) * 100;
@@ -57,7 +78,8 @@ namespace Hamish
                 Mathf.Clamp(curHealth, targetHealth, startingHealth);
             }
             ColourChange();
-            healthNumber.text = curHealth.ToString("#.#") + "%";
+            if(curHealth > 0)
+                healthNumber.text = curHealth.ToString("#.#") + "%";
             if (curHealth <= 0)
             {
                 for (int i = 0; i < txtEyes.Length; i++)
@@ -104,6 +126,10 @@ namespace Hamish
                     txtEyes[i].text = "0  0";
                 for (int i = 0; i < txtMouth.Length; i++)
                     txtMouth[i].text = "\n~";
+            }
+            else if(curHealth <= 0)
+            {
+                healthNumber.text = "DEAD";
             }
 
         }

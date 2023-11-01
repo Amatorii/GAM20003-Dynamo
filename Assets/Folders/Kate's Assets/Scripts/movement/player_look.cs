@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 
 public class player_look : MonoBehaviour
 {
-    public bool receiveInput = true;
+    public bool receiveInput = true;    
 
     public float sensitivity;
 
@@ -20,6 +21,12 @@ public class player_look : MonoBehaviour
     void Awake()
     {
         camAngle = 0;
+        EventManager.PlayerHasDied += DeathVoid;
+    }
+
+    private void DeathVoid()
+    {
+        receiveInput = false;
     }
 
     void Update()
