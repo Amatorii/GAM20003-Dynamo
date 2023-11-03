@@ -15,6 +15,9 @@ namespace Hamish.Enemy
         protected NavMeshAgent _agent;
         protected Animator animator;
 
+        protected ObjectiveTracking objective;
+        protected bool isAlive = true;
+
         [Header("Stats")]
         /// <summary>
         /// Becareful, the ranged enemy applies it's damage for every bullet
@@ -44,6 +47,8 @@ namespace Hamish.Enemy
             animator = GetComponentInChildren<Animator>();
             StartCoroutine(FOVRoutine());
             StartStateMachine(new EnemyIdle(this));
+            objective = GameObject.Find("EventSystem").GetComponent<ObjectiveTracking>();
+            objective.UpdateEnemyCount();
 
             _agent.speed = moveSpeed;
 
@@ -180,6 +185,11 @@ namespace Hamish.Enemy
             //StopAllCoroutines();
             animator.StopPlayback();
             animator.SetBool("IsDead", true);
+            if (isAlive)
+            {
+                objective.EnemyDeath();
+                isAlive = false;
+            }
             StartCoroutine(FinalCountDown());
         }
 
