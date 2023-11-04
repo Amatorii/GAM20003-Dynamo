@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   receiveInput: 1
-  sensitivity: 1
+  sensitivity: 0.6
   mouseX: 0
   mouseY: 0
   camAngle: 0
@@ -321,6 +321,10 @@ PrefabInstance:
       value: Rocket Launcher
       objectReference: {fileID: 0}
     - target: {fileID: 2679395545194521808, guid: b6fd64a47ced4ff4dad613fac66d02bf, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2679395545194521808, guid: b6fd64a47ced4ff4dad613fac66d02bf, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -408,8 +412,20 @@ PrefabInstance:
       value: Shotgun
       objectReference: {fileID: 0}
     - target: {fileID: 6270712116580647862, guid: 49d18b1325cb39244a41434127d03486, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6270712116580647862, guid: 49d18b1325cb39244a41434127d03486, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475570321770592511, guid: 49d18b1325cb39244a41434127d03486, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598346966537433951, guid: 49d18b1325cb39244a41434127d03486, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6651213974970259724, guid: 49d18b1325cb39244a41434127d03486, type: 3}
       propertyPath: m_RootOrder
@@ -458,6 +474,10 @@ PrefabInstance:
     - target: {fileID: 7002517717331611065, guid: 49d18b1325cb39244a41434127d03486, type: 3}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204272245626604893, guid: 49d18b1325cb39244a41434127d03486, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
