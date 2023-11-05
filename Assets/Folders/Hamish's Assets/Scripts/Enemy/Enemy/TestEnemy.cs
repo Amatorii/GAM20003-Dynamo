@@ -12,6 +12,11 @@ namespace Hamish.Enemy
             throw new System.NotImplementedException();
         }
 
+        public override EnemyState MoveToPlayer()
+        {
+            throw new System.NotImplementedException();
+        }
+
         // Start is called before the first frame update
         void Start()
         {

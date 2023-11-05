@@ -20,15 +20,11 @@ namespace Hamish.Enemy
             {
                 int distance = enemyClass.maxDistanceToChase;
                 enemyClass.StopAgent();
+            
                 if(distanceToPlayer > distance)
                     return new EnemyChase(enemyClass);
             }
-            if(enemyClass is MeleeEnemy)
-            {
-                //enemyClass.MoveToPlayer();
-                if(distanceToPlayer > 3)
-                    return new EnemyChase(enemyClass);
-            }
+
             return stateToReturn;
         }
     }

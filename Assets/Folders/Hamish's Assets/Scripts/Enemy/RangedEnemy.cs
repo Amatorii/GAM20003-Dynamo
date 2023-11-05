@@ -9,6 +9,7 @@ namespace Hamish.Enemy
         [Header("Class Specific Variables")]
         [SerializeField] private GameObject gun;
         public bool runStateMachine;
+        public bool handicap;
 
         protected override void Awake()
         { 
@@ -26,8 +27,6 @@ namespace Hamish.Enemy
             }
             RunStateMachine();
         }
-
-        public bool handicap;
 
         public override EnemyState AttackPlayer()
         {
@@ -54,9 +53,7 @@ namespace Hamish.Enemy
         private void AimAtPlayer()
         {
             Vector3 target = PredictedPosition();
-
             Vector3 dir = target - gunNozzle.position;
-            //dir.x = 0;
 
             Quaternion rot = Quaternion.LookRotation(dir);
             gunNozzle.rotation = Quaternion.Lerp(gunNozzle.rotation, rot, turningSpeed * 2f * Time.deltaTime);
@@ -93,9 +90,7 @@ namespace Hamish.Enemy
         [SerializeField] private float rpm;
         [Range(0, 10)][SerializeField] private int burstAmount;
         [Range(0, 500)][SerializeField] private int bulletSpeed;
-        //[SerializeField] private float xModifier;
-        //[SerializeField] private float yModifier;
-        //[SerializeField] private float zModifier;
+
         private IEnumerator ShootGun(int _noBullets)
         {
             while (0 != _noBullets)
@@ -109,6 +104,20 @@ namespace Hamish.Enemy
             }
             yield return new WaitForSeconds(1.0f);
             currentlyShooting = true;
+        }
+
+        public override EnemyState MoveToPlayer()
+        {
+            float distanceToPlayer = Vector3.Distance(playerObject.transform.position, transform.position);
+
+            if (distanceToPlayer < 40.0f)
+                return new EnemyAttack(this);
+
+            if (distanceToPlayer < 5.0f)
+                return new EnemyMove(this);
+
+            return new EnemyMove(this);
+
         }
     }
 }

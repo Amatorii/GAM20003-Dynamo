@@ -48,7 +48,8 @@ namespace Hamish.Enemy
             StartCoroutine(FOVRoutine());
             StartStateMachine(new EnemyIdle(this));
             objective = GameObject.Find("EventSystem").GetComponent<ObjectiveTracking>();
-            objective.UpdateEnemyCount();
+            if(objective != null)
+                objective.UpdateEnemyCount();
 
             _agent.speed = moveSpeed;
 
@@ -93,11 +94,7 @@ namespace Hamish.Enemy
             }
         }
 
-        public void MoveToPlayer()
-        {
-            _agent.SetDestination(playerObject.transform.position);
-            StoppingDistanceFix();
-        }
+        public abstract EnemyState MoveToPlayer();
 
         public void Strafe()
         {
@@ -138,20 +135,8 @@ namespace Hamish.Enemy
             }
             else if (_canSeePlayer)
                 _canSeePlayer = false;
-        }
-/*
-        protected void LookAtPlayer()
-        {
-            Quaternion lookRotation = Quaternion.LookRotation((playerObject.transform.position) - transform.position);
-            float time = 0;
-            while (time < 1)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
-                time += Time.deltaTime * 0.5f;
-            }
-        }
-*/
-        
+        }    
+
         protected void LookAtPlayer()
         {
             Vector3 dir = playerObject.transform.position - transform.position;
@@ -160,22 +145,13 @@ namespace Hamish.Enemy
             Quaternion rot = Quaternion.LookRotation(dir);
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, turningSpeed * Time.deltaTime);
         }
+
         public bool IsEnemyMoving()
         {
             if (_agent.hasPath)
                 return true;
             else
                 return false;
-        }
-
-        protected void StoppingDistanceFix()
-        {
-            bool bDistance = _agent.remainingDistance > _agent.stoppingDistance;
-            _agent.isStopped = false;
-            if (!bDistance)
-            {
-                StopAgent();
-            }
         }
 
         protected void Death()
@@ -196,8 +172,8 @@ namespace Hamish.Enemy
         private IEnumerator FinalCountDown()
         {
             yield return new WaitForSeconds(5);
-            Debug.Log("[" + this.name + "] destroying self");
-            Destroy(this.gameObject);
+            Debug.Log($"[{name}] destroying self");
+            Destroy(gameObject);
         }
 
         public void SetAnimationState(int state) { animator.SetInteger("CurrentState", state); }

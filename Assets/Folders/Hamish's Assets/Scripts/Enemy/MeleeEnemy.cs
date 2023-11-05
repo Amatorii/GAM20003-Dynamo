@@ -11,17 +11,16 @@ namespace Hamish.Enemy
         public string ShowCurrentState;
         private BoxCollider attackHitBox;
         private bool canAttackPlayer;
+
         protected override void Awake()
         {
             base.Awake();
             attackHitBox = GetComponentInChildren<BoxCollider>();
-            _agent.stoppingDistance = 3;
         }
 
-        // Update is called once per frame
         private void Update()
         {
-            if(healthScript.health <= 0)
+            if (healthScript.health <= 0)
             {
                 Death();
                 return;
@@ -29,16 +28,6 @@ namespace Hamish.Enemy
 
             RunStateMachine();
             ShowCurrentState = currentState.ToString();
-
-            float distanceToPlayer = Vector3.Distance(playerObject.transform.position, transform.position);
-            if (distanceToPlayer < 2)
-                _agent.speed = 1;
-            else if (distanceToPlayer < 5)
-            {
-                _agent.speed = distanceToPlayer / 1.2f;
-            }
-            else
-                _agent.speed = distanceToPlayer * 1.5f;
         }
 
         public override EnemyState AttackPlayer()
@@ -50,6 +39,28 @@ namespace Hamish.Enemy
                 isAttacking = true;
             }
             return currentState;
+        }
+
+        public override EnemyState MoveToPlayer()
+        {
+            _agent.SetDestination(PredictedPosition());
+            Physics.BoxCast(attackHitBox.center, attackHitBox.size, transform.forward, out RaycastHit hitinfo);
+            if (hitinfo.collider != null)
+            {
+                Debug.LogWarning($"[{name}] Hit info = {hitinfo.collider.tag}");
+                if (hitinfo.collider.CompareTag("Player"))
+                    return new EnemyAttack(this);
+            }
+            return new EnemyMove(this);
+        }
+
+
+        private Vector3 PredictedPosition()
+        {
+            Vector3 predictedPosition = playerObject.transform.position + playerObject.GetComponent<state_manager>().velocity / 5;
+            Debug.DrawLine(transform.position, predictedPosition, Color.magenta);
+
+            return predictedPosition;
         }
 
         private IEnumerator MeleeAttack()
@@ -64,17 +75,6 @@ namespace Hamish.Enemy
             }
             isAttacking = false;
             yield return null;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if(other.CompareTag("Player"))
-                canAttackPlayer = true;
-        }
-        private void OnTriggerExit(Collider other)
-        {
-            if(other.CompareTag("Player"))
-                canAttackPlayer = false;
         }
     }
 }

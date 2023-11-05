@@ -8,6 +8,7 @@ namespace Hamish.Enemy
     {
         public EnemyMove(Enemy _enemyClass) : base(_enemyClass)
         {
+
         }
 
         public override EnemyState RunState()
@@ -27,13 +28,14 @@ namespace Hamish.Enemy
 
                 if (!enemyClass._canSeePlayer && !enemyClass.IsEnemyMoving())
                 {
-                    enemyClass.Strafe();
-                    return this;
+                    return new EnemyIdle(enemyClass);
                 }
             }
+
             if(enemyClass is MeleeEnemy)
             {
-
+                enemyClass.SetAnimationState(1);
+                return enemyClass.MoveToPlayer();
             }
             return this;
         }
