@@ -10,7 +10,7 @@ namespace Hamish.Enemy
     {
         public string ShowCurrentState;
         private BoxCollider attackHitBox;
-        private bool canAttackPlayer;
+        [SerializeField]private bool canAttackPlayer;
 
         protected override void Awake()
         {
@@ -33,24 +33,26 @@ namespace Hamish.Enemy
         public override EnemyState AttackPlayer()
         {
             LookAtPlayer();
-            if (!isAttacking)
+            if (!isAttacking && canAttackPlayer)
             {
                 StartCoroutine(MeleeAttack());
                 isAttacking = true;
+                _agent.isStopped = true;
+                return new EnemyAttack(this);
             }
-            return currentState;
+            else
+            {
+                _agent.isStopped = false;
+                return new EnemyMove(this);
+            }
         }
 
         public override EnemyState MoveToPlayer()
         {
             _agent.SetDestination(PredictedPosition());
-            Physics.BoxCast(attackHitBox.center, attackHitBox.size, transform.forward, out RaycastHit hitinfo);
-            if (hitinfo.collider != null)
-            {
-                Debug.LogWarning($"[{name}] Hit info = {hitinfo.collider.tag}");
-                if (hitinfo.collider.CompareTag("Player"))
-                    return new EnemyAttack(this);
-            }
+            if (canAttackPlayer)
+                return new EnemyAttack(this);
+
             return new EnemyMove(this);
         }
 
@@ -75,6 +77,26 @@ namespace Hamish.Enemy
             }
             isAttacking = false;
             yield return null;
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            if (other != null)
+            {
+                if (other.CompareTag("Player"))
+                    canAttackPlayer = true;
+                else
+                    canAttackPlayer = false;
+                
+            }
+            else
+                canAttackPlayer = false;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other != null && other.CompareTag("Player"))
+                canAttackPlayer = false;
         }
     }
 }

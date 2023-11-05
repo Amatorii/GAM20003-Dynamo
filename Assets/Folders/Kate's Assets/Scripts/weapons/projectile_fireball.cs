@@ -40,7 +40,6 @@ public class projectile_fireball : MonoBehaviour
         RaycastHit contact;
         if (Physics.SphereCast(transform.position, width, transform.forward, out contact, speed * Time.deltaTime, contactLayermask))
         {
-            Debug.LogWarning("Contacted With: " + contact.collider.name);
             Explosion(contact); //if something is hit by the projectile, do an explosion
         }
 

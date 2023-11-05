@@ -47,8 +47,7 @@ namespace Hamish.Enemy
             animator = GetComponentInChildren<Animator>();
             StartCoroutine(FOVRoutine());
             StartStateMachine(new EnemyIdle(this));
-            objective = GameObject.Find("EventSystem").GetComponent<ObjectiveTracking>();
-            if(objective != null)
+            if(GameObject.Find("EventSystem").TryGetComponent<ObjectiveTracking>(out objective))
                 objective.UpdateEnemyCount();
 
             _agent.speed = moveSpeed;

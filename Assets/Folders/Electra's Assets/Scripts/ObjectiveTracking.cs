@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Hamish.Enemy;
+using TMPro;
 using UnityEngine;
 
 public class ObjectiveTracking : MonoBehaviour
@@ -9,10 +10,25 @@ public class ObjectiveTracking : MonoBehaviour
     public int enemiesKilled = 0;
     public GameObject victoryScreen;
 
+    public TextMeshProUGUI[] enemiesRemaining;
+
+    private void Start()
+    {
+        for (int i = 0; i < enemiesRemaining.Length; i++)
+            enemiesRemaining[i].text = enemiesAlive.ToString();
+        Debug.LogWarning(enemiesAlive.ToString());
+
+    }
+
     public void EnemyDeath()
     {
         enemiesKilled++;
         enemiesAlive--;
+
+        for (int i = 0; i < enemiesRemaining.Length; i++)
+            enemiesRemaining[i].text = enemiesAlive.ToString();
+
+        Debug.LogWarning(enemiesAlive.ToString());
         if (enemiesAlive == 0)
             StartCoroutine(WinGame());
     }
@@ -26,5 +42,6 @@ public class ObjectiveTracking : MonoBehaviour
     public void UpdateEnemyCount()
     {
         enemiesAlive++;
+
     }
 }

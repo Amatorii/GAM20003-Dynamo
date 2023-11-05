@@ -17,7 +17,7 @@ namespace Hamish.Enemy
                 if (enemyClass is RangedEnemy && distanceToPlayer < 5.0f)
                     return new EnemyAttack(enemyClass);
 
-                return new EnemyChase(enemyClass);
+                return new EnemyMove(enemyClass);
             }
             return this;
         }
