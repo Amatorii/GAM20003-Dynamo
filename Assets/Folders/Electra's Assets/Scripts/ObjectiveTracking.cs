@@ -14,7 +14,14 @@ public class ObjectiveTracking : MonoBehaviour
         enemiesKilled++;
         enemiesAlive--;
         if (enemiesAlive == 0)
-            victoryScreen.SetActive(true);
+            StartCoroutine(WinGame());
+    }
+    private IEnumerator WinGame()
+    {
+        yield return new WaitForSeconds(1);
+        victoryScreen.SetActive(true);
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.visible = true;
     }
     public void UpdateEnemyCount()
     {

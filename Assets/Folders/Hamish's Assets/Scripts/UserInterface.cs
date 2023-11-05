@@ -22,8 +22,6 @@ namespace Hamish
         private float startingHealth;
         private float curHealth;
 
-        public UnityEngine.UI.Image[] imageH;
-
         private GameObject playerObject;
         private ent_health playerHealth;
 
@@ -67,6 +65,8 @@ namespace Hamish
                 gameOver.SetActive(true);
             else if (i ==2)
                 gameWon.SetActive(true);
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
+            UnityEngine.Cursor.visible = true;
         }
 
         void Update()
@@ -77,7 +77,7 @@ namespace Hamish
                 curHealth -= 4 * Time.deltaTime * (curHealth - targetHealth);
                 Mathf.Clamp(curHealth, targetHealth, startingHealth);
             }
-            ColourChange();
+
             if(curHealth > 0)
                 healthNumber.text = curHealth.ToString("#.#") + "%";
             if (curHealth <= 0)
@@ -88,19 +88,6 @@ namespace Hamish
                     txtMouth[i].text = "\n^";
 
                 StopCoroutine(EmojiBlink());
-            }
-        }
-        public float H, S, V;
-        private void ColourChange()
-        {
-            Color healthColour = Color.Lerp(Color.red, Color.green, curHealth / 75);
-            Color imageColour = Color.Lerp(Color.red, Color.HSVToRGB(H, S, V), curHealth / 50);
-
-            healthNumber.color = healthColour;
-
-            for (int i = 0; i < imageH.Length; i++)
-            {
-                imageH[i].color = imageColour;
             }
         }
 
